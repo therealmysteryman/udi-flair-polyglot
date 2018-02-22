@@ -6,7 +6,7 @@ client = make_client('n3pdxfil6RboAIFsFiSx0sTSyxzR06SWvoWEiEm3', '77Dmrd52VI8fLw
 structures = client.get('structures')
 
 # get a single room by id
-room = client.get('rooms', id="2")
+room = client.get('rooms')
 
 # fetch vents in a room
 # vents = structures.get_rel('vents')
