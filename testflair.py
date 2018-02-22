@@ -11,7 +11,4 @@ room = client.get('rooms')
 # fetch vents in a room
 # vents = structures.get_rel('vents')
 
-#print (room)
-
-print (structures)
-#print (vents)
+print (room)
