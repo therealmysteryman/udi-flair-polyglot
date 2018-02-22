@@ -8,7 +8,7 @@ structures = client.get('structures')
 # get a single room by id
 rooms = client.get('rooms')
 for room in rooms:
-  print (room.get_rel('name'))
+  print (room.attributes['name'])
 
 # fetch vents in a room
 # vents = structures.get_rel('vents')
