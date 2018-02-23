@@ -11,6 +11,6 @@ rooms = client.get('rooms')
 for room in rooms:
   print (room.attributes['name'])
   vents = room.get_rel('vents')
-  vent = nothing
+  vent = None
   for vent in vents:
     print (vent.attributes['name'])
