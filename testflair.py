@@ -14,4 +14,5 @@ for room in rooms:
     vents = room.get_rel('vents')
     for vent in vents:
       print (vent.attributes['name'])
-  exception execption:
+  except Exception as ex:
+    pass
