@@ -10,7 +10,8 @@ rooms = client.get('rooms')
 
 for room in rooms:
   print (room.attributes['name'])
-  vents = room.get_rel('vents')
-  #if vents is not None:
-  #  for vent in vents:
-  #    print (vent.attributes['name'])
+  try:
+    vents = room.get_rel('vents')
+    for vent in vents:
+      print (vent.attributes['name'])
+  exception execption:
