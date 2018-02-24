@@ -1,3 +1,14 @@
 <editors>
+        <editor id="bool">
+                <range uom="2" subset="0,1" />
+        </editor>
+        
+        <editor id="STYPE">
+                <range uom="25" subset="0-1" />
+        </editor>
+        
+        <editor id="SLOCATIONTYPE">
+                <range uom="25" subset="0-2" />
+        </editor>    
         
 </editors>
