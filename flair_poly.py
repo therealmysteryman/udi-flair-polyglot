@@ -7,6 +7,7 @@ Using the Flair API Client - https://github.com/flair-systems/flair-api-client-p
 """
 
 import polyinterface
+import hashlib
 import time
 import json
 import sys
@@ -69,7 +70,8 @@ class Controller(polyinterface.Controller):
         
         structures = self.api_client.get('structures')
         for structure in structures:
-            self.addNode(FlairStructure(self, hash(structure.attributes['name']), hash(structure.attributes['name']),structure.attributes['name'],structure))
+            strHash = hashlib.md5(structure.attributes['name']).hexdigest()
+            self.addNode(FlairStructure(self, strHash, strHash,structure.attributes['name'],structure))
             time.sleep(1)    
                     
     def delete(self):
