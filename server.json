@@ -1,0 +1,37 @@
+{
+    "name": "Flair",
+    "docs": "https://api.flair.co/api/",
+    "type": "python3",
+    "executable": "flair_poly.py",
+    "install": "install.sh",
+    "shortPoll": "60",
+    "longPoll": "120",
+    "description": "Flair system to the ISY994.",
+    "notice": "https://github.com/therealmysteryman/udi-flair-polyglot/blob/master/LICENSE",
+    "credits": [
+        {
+            "title": "udi-flair-poly: A Polyglot v2 interface to Milight Protocol V6",
+            "author": "AutomationGeek",
+            "version": "0.0.1",
+            "date": "Feb 24, 2018",
+            "source": "https://github.com/therealmysteryman/udi-flair-polyglot",
+            "license": "https://github.com/therealmysteryman/udi-flair-polyglot/blob/master/LICENSE"
+        },
+	{
+            "title": "udi-poly-template-python: A Polyglot v2 Poly template",
+            "author": "James Milne (Einstein.42)",
+            "version": "2.0.0",
+            "date": "November 8, 2017",
+            "source": "https://github.com/Einstein42/udi-poly-template-python",
+            "license": "https://raw.githubusercontent.com/Einstein42/udi-poly-template-python/master/LICENSE"
+        },
+	{
+            "title": "Flair Python library",
+            "author": "flair-systems",
+            "version": "0.2.0",
+            "date": "August 29, 2017",
+            "source": "https://github.com/flair-systems/flair-api-client-py,
+            "license": "https://raw.githubusercontent.com/flair-systems/flair-api-client-py/master/LICENSE.txt"
+        }
+    ]
+}
