@@ -1,0 +1,28 @@
+<nodeDefs>
+    <nodeDef id="controller" nls="ctl">
+        <editors />
+        <sts>
+            <st id="ST" editor="bool" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+            </accepts>
+        </cmds>
+    </nodeDef>
+    </nodeDef>
+        <nodeDef id="FLAIR_STRUCT" nls="FS">
+        <editors />
+        <sts>
+            <st id="GV1"/>
+            <st id="GV2" editor="STYPE" /> 
+            <st id="GV3"/> 
+            <st id="GV4" editor="SLOCATIONTYPE" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+            </accepts>
+        </cmds>
+    </nodeDef>
+</nodeDefs>
