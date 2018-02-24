@@ -70,7 +70,7 @@ class Controller(polyinterface.Controller):
         
         structures = self.api_client.get('structures')
         for structure in structures:
-            strHash = hashlib.md5(structure.attributes['name']).hexdigest()
+            strHash = hashlib.md5(structure.attributes['name'].encode('utf8')).hexdigest()
             self.addNode(FlairStructure(self, strHash, strHash,structure.attributes['name'],structure))
             time.sleep(1)    
                     
