@@ -10,7 +10,7 @@
     "notice": "https://github.com/therealmysteryman/udi-flair-polyglot/blob/master/LICENSE",
     "credits": [
         {
-            "title": "udi-flair-poly: A Polyglot v2 interface to Milight Protocol V6",
+            "title": "udi-flair-poly: A Polyglot v2 interface to Flair API",
             "author": "AutomationGeek",
             "version": "0.0.1",
             "date": "Feb 24, 2018",
@@ -30,7 +30,7 @@
             "author": "flair-systems",
             "version": "0.2.0",
             "date": "August 29, 2017",
-            "source": "https://github.com/flair-systems/flair-api-client-py,
+            "source": "https://github.com/flair-systems/flair-api-client-py",
             "license": "https://raw.githubusercontent.com/flair-systems/flair-api-client-py/master/LICENSE.txt"
         }
     ]
