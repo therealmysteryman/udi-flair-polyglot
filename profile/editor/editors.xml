@@ -3,6 +3,14 @@
                 <range uom="2" subset="0,1" />
         </editor>
         
+        <editor id="SNAME">
+                <range uom="27" />
+        </editor>    
+        
+        <editor id="SLOCATION">
+                <range uom="27"/>
+        </editor>    
+        
         <editor id="STYPE">
                 <range uom="25" subset="0-1" />
         </editor>
