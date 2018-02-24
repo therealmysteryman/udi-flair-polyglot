@@ -20,7 +20,7 @@ class Controller(polyinterface.Controller):
 
     def __init__(self, polyglot):
         super(Controller, self).__init__(polyglot)
-        self.name = 'Flair_Rooms'
+        self.name = 'Flair_Controller'
         self.initialized = False
         self.queryON = False
         self.client_id = ""
