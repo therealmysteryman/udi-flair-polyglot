@@ -45,7 +45,7 @@ class Controller(polyinterface.Controller):
                 self.setDriver('ST', 1)
                 
                 # Connect to Flair API
-                api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
+                self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
                 
                 self.discover()
                 self.query()
@@ -67,7 +67,7 @@ class Controller(polyinterface.Controller):
     def discover(self, *args, **kwargs):
         time.sleep(1)
         
-        structures = client.get('structures')
+        structures = self.api_client.get('structures')
         for structure in structures:
             self.addNode(FlairStructure(self, hash(structure.attributes['name']), hash(structure.attributes['name']),structure.attributes['name'],structure))
             time.sleep(1)    
