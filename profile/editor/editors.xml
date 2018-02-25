@@ -16,7 +16,7 @@
         </editor>
         
         <editor id="SLOCATIONTYPE">
-                <range uom="25" subset="0-2" />
+                <range uom="27" />
         </editor>    
         
 </editors>
