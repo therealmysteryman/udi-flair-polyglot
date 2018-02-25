@@ -87,17 +87,17 @@ class Controller(polyinterface.Controller):
                 
                 roomNumber = roomNumber + 1
             
-            roomNumber = 1
-            rooms2 = structure.get_rel('rooms')
-            for room2 in rooms2:
-                try:
-                    pucks = room2.get_rel('pucks')
+            #roomNumber = 1
+            #rooms2 = structure.get_rel('rooms')
+            #for room2 in rooms2:
+                #try:
+                #    pucks = room2.get_rel('pucks')
                     #for puck in pucks:
                     #    strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
                     #    self.addNode(FlairStructure(self, strHash,strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck))
-                except Exception as ex:
-                    pass
-                roomNumber = roomNumber + 1
+                #except Exception as ex:
+                #    pass
+             #   roomNumber = roomNumber + 1
                 
                 
     def delete(self):
