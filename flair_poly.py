@@ -84,7 +84,7 @@ class Controller(polyinterface.Controller):
                         self.addNode(FlairStructure(self, strHash, strHashRoom + strHashVents,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent))
                         roomNumber = roomNumber + 1
                 except Exception as ex:
-                    pass
+                    roomNumber = roomNumber + 1
                     
     def delete(self):
         LOGGER.info('Deleting Flair')
