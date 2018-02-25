@@ -72,8 +72,12 @@ class Controller(polyinterface.Controller):
         for structure in structures:
             strHash = str(int(hashlib.md5(structure.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
             self.addNode(FlairStructure(self, strHash, strHash,structure.attributes['name'],structure))
-            time.sleep(1)    
-                    
+            time.sleep(1)
+            rooms = structure.get_rel('rooms')
+            for room in rooms:
+                strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
+                self.addNode(FlairStructure(self, strHash, strHashRoom,room.attributes['name'],room))
+    
     def delete(self):
         LOGGER.info('Deleting Flair')
         
