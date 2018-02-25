@@ -4,7 +4,4 @@ ND-FLAIR_STRUCT-ICON = GenericCtl
 ND-controller-NAME = Flair
 ND-controller-ICON = GenericCtl
 
-ST-GV1-NAME = Name
-ST-GV2-NAME = Structure Type
-ST-GV3-NAME = Location
-ST-GV4-NAME = Location Type
+ST-NAME = Connected
