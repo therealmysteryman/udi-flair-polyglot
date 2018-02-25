@@ -76,7 +76,15 @@ class Controller(polyinterface.Controller):
             roomNumber = 1
             for room in rooms:
                 strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 7))
-                
+             
+                try:
+                    pucks = room.get_rel('pucks')
+                    for puck in pucks:
+                        strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
+                        self.addNode(FlairStructure(self, strHash,strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck))
+                except Exception as ex:
+                    pass
+            
                 try:
                     vents = room.get_rel('vents')
                     for vent in vents :
@@ -86,20 +94,7 @@ class Controller(polyinterface.Controller):
                     pass
                 
                 roomNumber = roomNumber + 1
-            
-            #roomNumber = 1
-            #rooms2 = structure.get_rel('rooms')
-            #for room2 in rooms2:
-                #try:
-                #    pucks = room2.get_rel('pucks')
-                    #for puck in pucks:
-                    #    strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                    #    self.addNode(FlairStructure(self, strHash,strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck))
-                #except Exception as ex:
-                #    pass
-             #   roomNumber = roomNumber + 1
-                
-                
+                           
     def delete(self):
         LOGGER.info('Deleting Flair')
         
