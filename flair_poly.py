@@ -67,16 +67,15 @@ class Controller(polyinterface.Controller):
         
     def discover(self, *args, **kwargs):
         time.sleep(1)
-        
         structures = self.api_client.get('structures')
         for structure in structures:
             strHash = str(int(hashlib.md5(structure.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
             self.addNode(FlairStructure(self, strHash, strHash,structure.attributes['name'],structure))
-            time.sleep(1)
+            time.sleep(5)
             rooms = structure.get_rel('rooms')
             roomNumber = 1
             for room in rooms:
-                strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
+                strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 7))
                 try:
                     vents = room.get_rel('vents')
                     for vent in vents :
