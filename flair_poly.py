@@ -77,23 +77,25 @@ class Controller(polyinterface.Controller):
             for room in rooms:
                 strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 7))
                 
-                #try:
-                #    vents = room.get_rel('vents')
-                #    for vent in vents :
-                #        strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                #        self.addNode(FlairStructure(self, strHash, strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent))
-                #except Exception as ex:
-                #    pass
+                try:
+                    vents = room.get_rel('vents')
+                    for vent in vents :
+                        strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
+                        self.addNode(FlairStructure(self, strHash, strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent))
+                except Exception as ex:
+                    pass
+                
+                roomNumber = roomNumber + 1
                 
                 try:
                     pucks = room.get_rel('pucks')
                     for puck in pucks:
                         strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
                         self.addNode(FlairStructure(self, strHash, strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck))
-                except Exception as ex2:
+                except Exception as ex:
                     pass
                 
-                roomNumber = roomNumber + 1
+                
     def delete(self):
         LOGGER.info('Deleting Flair')
         
