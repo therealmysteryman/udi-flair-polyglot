@@ -85,13 +85,13 @@ class Controller(polyinterface.Controller):
                 except Exception as ex:
                     pass
             
-                #try:
-                #    vents = room.get_rel('vents')
-                #    for vent in vents :
-                #        strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                #        self.addNode(FlairStructure(self, strHash, strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent))
-                #except Exception as ex:
-                #    pass
+                try:
+                    vents = room.get_rel('vents')
+                    for vent in vents :
+                        strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
+                        self.addNode(FlairStructure(self, strHash, strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent))
+                except Exception as ex:
+                    pass
                 
                 roomNumber = roomNumber + 1
                            
