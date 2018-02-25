@@ -90,7 +90,7 @@ class Controller(polyinterface.Controller):
                     pucks = room.get_rel('pucks')
                     for puck in pucks :
                         strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                        self.addNode(FlairStructure(self, strHash, strHashRoom + strHashVents,'R' + str(roomNumber) + '_' + puck.attributes['name'],vent))
+                        self.addNode(FlairStructure(self, strHash, strHashRoom + strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck))
                 except Exception as ex:
                     pass
 
