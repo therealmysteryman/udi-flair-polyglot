@@ -21,7 +21,7 @@ class Controller(polyinterface.Controller):
 
     def __init__(self, polyglot):
         super(Controller, self).__init__(polyglot)
-        self.name = 'Flair_Controller'
+        self.name = 'Flair'
         self.initialized = False
         self.queryON = False
         self.client_id = ""
@@ -90,18 +90,12 @@ class FlairStructure(polyinterface.Node):
         self.objStructure = struct
    
     def start(self):
-        self.setDriver('GV1', self.objStructure.attributes['name'], True) # Name
-        # self.setDriver('GV2', self.objStructure.attributes['structure_type'], True) # Type
-        self.setDriver('GV3', self.objStructure.attributes['location'], True) # Location
-        self.setDriver('GV4', self.objStructure.attributes['location-type'], True) # Location Type
+        self.setDriver('ST', 1)
         
     def query(self):
         pass
              
-    drivers = [{'driver': 'GV1', 'value': '', 'uom': 27},
-               {'driver': 'GV2', 'value': 0, 'uom': 25},
-               {'driver': 'GV3', 'value': '', 'uom': 27},
-               {'driver': 'GV4', 'value': 1, 'uom': 25}]
+    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
     
     id = 'FLAIR_STRUCT'
     commands = {
