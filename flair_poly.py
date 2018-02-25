@@ -87,6 +87,7 @@ class FlairStructure(polyinterface.Node):
 
         super(FlairStructure, self).__init__(controller, primary, address, name)
         self.queryON = True
+        self.name = name
         self.objStructure = struct
    
     def start(self):
