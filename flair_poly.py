@@ -90,6 +90,7 @@ class Controller(polyinterface.Controller):
             roomNumber = 1
             for room in rooms:
                 try:
+                    rooms = structure.get_rel('rooms')
                     pucks = room.get_rel('pucks')
                     #for puck in pucks:
                     #    strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
