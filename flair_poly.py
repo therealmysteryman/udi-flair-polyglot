@@ -49,7 +49,7 @@ class Controller(polyinterface.Controller):
                 self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
                 
                 self.discover()
-                # self.query()
+                self.query()
                 
         except Exception as ex:
             LOGGER.error('Error starting Flair NodeServer: %s', str(ex))
@@ -115,7 +115,7 @@ class FlairStructure(polyinterface.Node):
         self.setDriver('ST', 1)
         
     def query(self):
-        pass
+        self.setDriver('ST', 1)
              
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
     
