@@ -88,10 +88,10 @@ class Controller(polyinterface.Controller):
                 roomNumber = roomNumber + 1
             
             roomNumber = 1
-            for room in rooms:
+            rooms2 = structure.get_rel('rooms')
+            for room2 in rooms2:
                 try:
-                    rooms = structure.get_rel('rooms')
-                    pucks = room.get_rel('pucks')
+                    pucks = room2.get_rel('pucks')
                     #for puck in pucks:
                     #    strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
                     #    self.addNode(FlairStructure(self, strHash,strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck))
