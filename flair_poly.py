@@ -91,7 +91,7 @@ class FlairStructure(polyinterface.Node):
    
     def start(self):
         self.setDriver('GV1', self.objStructure.attributes['name'], True) # Name
-        self.setDriver('GV2', self.objStructure.attributes['structure-type'], True) # Type
+        # self.setDriver('GV2', self.objStructure.attributes['structure_type'], True) # Type
         self.setDriver('GV3', self.objStructure.attributes['location'], True) # Location
         self.setDriver('GV4', self.objStructure.attributes['location-type'], True) # Location Type
         
