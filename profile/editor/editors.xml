@@ -1,5 +1,8 @@
 <editors>
         <editor id="bool">
                 <range uom="2" subset="0,1" />
-        </editor>        
+        </editor>
+        <editor id="percent">
+                <range uom="51" subset="0-100" />
+        </editor>   
 </editors>
