@@ -136,7 +136,7 @@ class FlairVent(polyinterface.Node):
     def start(self):
         self.setDriver('ST', 1)
         current_state = self.objVent.get_rel('current-vent-state')
-        #LOGGER.info(str(current_state.attributes['percent-open']))
+       LOGGER.info(str(current_state.attributes['percent-open']))
         #LOGGER.info(str(current_state.attributes['battery-level']))
         
     def query(self):
