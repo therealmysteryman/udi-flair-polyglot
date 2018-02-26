@@ -135,7 +135,7 @@ class FlairVent(polyinterface.Node):
         self.objRoom = room
         
     def start(self):
-        if ( self.objVent.attributes['percent-open'] is True:
+        if  self.objVent.attributes['percent-open'] is True:
             self.setDriver('ST', 1)
         else
             self.setDriver('ST', 0)
