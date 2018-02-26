@@ -46,4 +46,18 @@
             </accepts>
         </cmds>
     </nodeDef>
+        <nodeDef id="FLAIR_ROOM" nls="FR">
+        <editors />
+        <sts>
+            <st id="GV2" editor="bool" />
+            <st id="CLITEMP" editor="temp" />
+            <st id="CLIHUM" editor="hum" />
+            <st id="CLISPC" editor="temp" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+            </accepts>
+        </cmds>
+    </nodeDef>
 </nodeDefs>
