@@ -201,7 +201,7 @@ class FlairRoom(polyinterface.Node):
         else:
             self.setDriver('GV2', 1)
             
-        self.setDriver('CLITEMP', round(i,self.objRoom.attributes['current-temperature-c'],1))
+        self.setDriver('CLITEMP', round(self.objRoom.attributes['current-temperature-c'],1))
         
         if self.objRoom.attributes['current-humidity'] is None:
             self.setDriver('CLIHUM',0)
