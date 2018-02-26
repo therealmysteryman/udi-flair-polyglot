@@ -21,4 +21,16 @@
             </accepts>
         </cmds>
     </nodeDef>
+    <nodeDef id="FLAIR_STRUCT" nls="FS">
+        <editors />
+        <sts>
+            <st id="ST" editor="bool" />
+            <st id="GV1" editor="percent" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+            </accepts>
+        </cmds>
+    </nodeDef>
 </nodeDefs>
