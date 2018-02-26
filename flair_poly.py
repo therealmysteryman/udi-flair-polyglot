@@ -132,7 +132,7 @@ class FlairVent(polyinterface.Node):
         self.queryON = True
         self.name = name
         self.objVent = vent
-        LOGGER.info(str(vent.attributes['current-vent-state'].percent-open))
+        LOGGER.info(str(vent.attributes['current-state'].percent-open))
    
     def start(self):
         
