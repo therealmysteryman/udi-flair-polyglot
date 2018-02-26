@@ -90,7 +90,7 @@ class Controller(polyinterface.Controller):
                     vents = room.get_rel('vents')
                     for vent in vents :
                         strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                        self.addNode(FlairVent(self, strHash, strHashRoom[:4]+strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent))
+                        self.addNode(FlairVent(self, strHash, strHashRoom[:4]+strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent,room))
                 except EmptyBodyException as ex:
                     pass
                 
@@ -126,25 +126,25 @@ class FlairStructure(polyinterface.Node):
    
 class FlairVent(polyinterface.Node):
 
-    def __init__(self, controller, primary, address, name, vent):
+    def __init__(self, controller, primary, address, name, vent,room):
 
         super(FlairVent, self).__init__(controller, primary, address, name)
         self.queryON = True
         self.name = name
         self.objVent = vent
-        LOGGER.info(str(vent.attributes['percent-open']))
-   
+        self.objRoom = room
+        
     def start(self):
-        
-        self.setDriver('ST', 1)
-        
-            #current_state = self.objVent.attributes['current-vent-state']            
-            #LOGGER.info(str(current_state.attributes['battery-level']))
-
+        if ( self.objVent.attributes['percent-open'] is True:
+            self.setDriver('ST', 1)
+        else
+            self.setDriver('ST', 0)
+            
     def query(self):
-        self.setDriver('ST', 1)
+        self.setDriver('GV1', self.objVent.attributes['percent-open'])
              
-    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
+    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2},
+              {'driver': 'GV1', 'value': 0, 'uom': 51}]
     
     id = 'FLAIR_VENT'
     commands = {
