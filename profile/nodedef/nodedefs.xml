@@ -36,6 +36,7 @@
     <nodeDef id="FLAIR_PUCK" nls="FP">
         <editors />
         <sts>
+            <st id="GV2" editor="bool" />
             <st id="CLITEMP" editor="temp" />
             <st id="CLIHUM" editor="hum" />
         </sts>
