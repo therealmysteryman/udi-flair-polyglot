@@ -139,7 +139,7 @@ class FlairVent(polyinterface.Node):
         
         try:
             #current_state = self.objVent.attributes['current-vent-state']
-            LOGGER.info(str(current_state.attributes['current-vent-state'].percent-open))
+            LOGGER.info(str(self.objVent.attributes['current-vent-state'].percent-open))
             #LOGGER.info(str(current_state.attributes['battery-level']))
         except Exception as ex:
             LOGGER.info(str(ex))
