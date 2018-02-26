@@ -24,8 +24,20 @@
     <nodeDef id="FLAIR_VENT" nls="FV">
         <editors />
         <sts>
-            <st id="ST" editor="bool" />
+            <st id="GV2" editor="bool" />
             <st id="GV1" editor="percent" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+            </accepts>
+        </cmds>
+    </nodeDef>
+    <nodeDef id="FLAIR_PUCK" nls="FP">
+        <editors />
+        <sts>
+            <st id="CLITEMP" editor="temp" />
+            <st id="CLIHUM" editor="hum" />
         </sts>
         <cmds>
             <sends />
