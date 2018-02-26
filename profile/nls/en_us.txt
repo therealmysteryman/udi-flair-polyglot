@@ -3,7 +3,11 @@ ND-FLAIR_STRUCT-NAME = Flair Structure
 ND-FLAIR_STRUCT-ICON = GenericCtl
 ND-controller-NAME = Flair
 ND-controller-ICON = GenericCtl
+ND-FLAIR_VENT-NAME = Flair Vent
+ND-FLAIR_VENT-ICON = Output
 
 ST-controller-ST-NAME = Connected
 ST-FLAIR_STRUCT-ST-NAME = Connected
-ST-ST-NAME = Connected
+ST-FLAIR_VENT-NAME = Inactive
+
+ST-GV1-NAME = Open
