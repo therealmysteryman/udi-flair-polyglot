@@ -77,7 +77,8 @@ class Controller(polyinterface.Controller):
             roomNumber = 1
             for room in rooms:
                 strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-             
+                self.addNode(FlairRoom(self, strHash,strHashRoom,'R' + str(roomNumber) + '_' + rooms.attributes['name'],room))
+                
                 try:
                     pucks = room.get_rel('pucks')
                     for puck in pucks:
@@ -135,12 +136,14 @@ class FlairVent(polyinterface.Node):
         self.objRoom = room
         
     def start(self):
+        self.query()
+            
+    def query(self):
         if  self.objVent.attributes['inactive'] is True:
             self.setDriver('GV2', 1)
         else:
             self.setDriver('GV2', 0)
             
-    def query(self):
         self.setDriver('GV1', self.objVent.attributes['percent-open'])
              
     drivers = [{'driver': 'GV2', 'value': 0, 'uom': 2},
@@ -161,12 +164,14 @@ class FlairPuck(polyinterface.Node):
         self.objRoom = room
         
     def start(self):
+        self.query()
+            
+    def query(self):
         if  self.objPuck.attributes['inactive'] is True:
             self.setDriver('GV2', 1)
         else:
             self.setDriver('GV2', 0)
             
-    def query(self):
         self.setDriver('CLITEMP', self.objPuck.attributes['current-temperature-c'])
         self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'])
              
@@ -177,6 +182,38 @@ class FlairPuck(polyinterface.Node):
     id = 'FLAIR_PUCK'
     commands = {
                 }
+
+class FlairRoom(polyinterface.Node):
+
+    def __init__(self, controller, primary, address, name,room):
+
+        super(FlairRoom, self).__init__(controller, primary, address, name)
+        self.queryON = True
+        self.name = name
+        self.objRoom = room
+        
+    def start(self):
+        self.query()
+            
+    def query(self):
+        if  self.objRoom.attributes['active'] is True:
+            self.setDriver('GV2', 0)
+        else:
+            self.setDriver('GV2', 1)
+            
+        self.setDriver('CLITEMP', self.objPuck.attributes['current-temperature-c'])
+        self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'])
+        self.setDriver('CLISPC', self.objPuck.attributes['set-point-c'])
+        
+             
+    drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
+                {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
+                {'driver': 'CLIHUM', 'value': 0, 'uom': 22},
+                {'driver': 'CLISPC', 'value': 0, 'uom': 4}]
+    
+    id = 'FLAIR_ROOM'
+    commands = {
+                }    
     
 if __name__ == "__main__":
     try:
