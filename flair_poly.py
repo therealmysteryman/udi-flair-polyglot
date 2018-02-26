@@ -77,7 +77,7 @@ class Controller(polyinterface.Controller):
             roomNumber = 1
             for room in rooms:
                 strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                self.addNode(FlairRoom(self, strHash,strHashRoom,'R' + str(roomNumber) + '_' + rooms.attributes['name'],room))
+                self.addNode(FlairRoom(self, strHash,strHashRoom,'R' + str(roomNumber) + '_' + room.attributes['name'],room))
                 
                 try:
                     pucks = room.get_rel('pucks')
@@ -201,9 +201,9 @@ class FlairRoom(polyinterface.Node):
         else:
             self.setDriver('GV2', 1)
             
-        self.setDriver('CLITEMP', self.objPuck.attributes['current-temperature-c'])
-        self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'])
-        self.setDriver('CLISPC', self.objPuck.attributes['set-point-c'])
+        self.setDriver('CLITEMP', self.objRoom.attributes['current-temperature-c'])
+        self.setDriver('CLIHUM', self.objRoom.attributes['current-humidity'])
+        self.setDriver('CLISPC', self.objRoom.attributes['set-point-c'])
         
              
     drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
