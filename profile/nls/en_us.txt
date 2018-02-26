@@ -7,6 +7,8 @@ ND-FLAIR_VENT-NAME = Flair Vent
 ND-FLAIR_VENT-ICON = Output
 ND-FLAIR_PUCK-NAME = Flair Puck
 ND-FLAIR_PUCK-ICON = TempSensor
+ND-FLAIR_ROOM-NAME = Flair Room
+ND-FLAIR_ROOM-ICON = TempSensor
 
 ST-ST-NAME = Connected
 ST-GV1-NAME = Open
@@ -14,3 +16,4 @@ ST-GV2-NAME = Inactive
 
 ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
+ST-CLISPC-NAME = Set Point
