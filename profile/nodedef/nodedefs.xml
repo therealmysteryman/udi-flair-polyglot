@@ -21,7 +21,7 @@
             </accepts>
         </cmds>
     </nodeDef>
-    <nodeDef id="FLAIR_STRUCT" nls="FS">
+    <nodeDef id="FLAIR_VENT" nls="FV">
         <editors />
         <sts>
             <st id="ST" editor="bool" />
