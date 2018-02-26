@@ -84,7 +84,7 @@ class Controller(polyinterface.Controller):
                     #    strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
                     #    self.addNode(FlairStructure(self, strHash,strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck))
                 except EmptyBodyException as ex:
-                    LOGGER.error('Error pucks NodeServer: %s', str(ex))
+                    LOGGER.error('Error pucks NodeServer: %s', str(room.attributes['name']))
             
                 try:
                     vents = room.get_rel('vents')
@@ -92,7 +92,7 @@ class Controller(polyinterface.Controller):
                     #    strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
                     #    self.addNode(FlairStructure(self, strHash, strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent))
                 except EmptyBodyException as ex:
-                    LOGGER.error('Error vents NodeServer: %s', str(ex))
+                    LOGGER.error('Error vents NodeServer: %s', str(room.attributes['name']))
                 
                 roomNumber = roomNumber + 1
                            
