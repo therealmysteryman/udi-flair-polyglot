@@ -82,7 +82,7 @@ class Controller(polyinterface.Controller):
                     pucks = room.get_rel('pucks')
                     for puck in pucks:
                         strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                        self.addNode(FlairStructure(self, strHash,strHashRoom[:4]+strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck))
+                        self.addNode(FlairPuck(self, strHash,strHashRoom[:4]+strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck,room))
                 except EmptyBodyException as ex:
                     pass
             
@@ -135,18 +135,46 @@ class FlairVent(polyinterface.Node):
         self.objRoom = room
         
     def start(self):
-        if  self.objVent.attributes['percent-open'] is True:
-            self.setDriver('ST', 1)
+        if  self.objVent.attributes['inactive'] is True:
+            self.setDriver('GV2', 1)
         else:
-            self.setDriver('ST', 0)
+            self.setDriver('GV2', 0)
             
     def query(self):
         self.setDriver('GV1', self.objVent.attributes['percent-open'])
              
-    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2},
+    drivers = [{'driver': 'GV2', 'value': 0, 'uom': 2},
               {'driver': 'GV1', 'value': 0, 'uom': 51}]
     
     id = 'FLAIR_VENT'
+    commands = {
+                }
+    
+class FlairPuck(polyinterface.Node):
+
+    def __init__(self, controller, primary, address, name, puck,room):
+
+        super(FlairVent, self).__init__(controller, primary, address, name)
+        self.queryON = True
+        self.name = name
+        self.objPuck = puck
+        self.objRoom = room
+        
+    def start(self):
+        if  self.objPuck.attributes['inactive'] is True:
+            self.setDriver('GV2', 1)
+        else:
+            self.setDriver('GV2', 0)
+            
+    def query(self):
+        self.setDriver('CLITEMP', self.objPuck.attributes['current-temperature-c'])
+        self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'])
+             
+    drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
+                {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
+                {'driver': 'CLIHUM', 'value': 0, 'uom': 22}]
+    
+    id = 'FLAIR_PUCK'
     commands = {
                 }
     
