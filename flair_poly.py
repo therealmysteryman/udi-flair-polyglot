@@ -154,7 +154,7 @@ class FlairPuck(polyinterface.Node):
 
     def __init__(self, controller, primary, address, name, puck,room):
 
-        super(FlairVent, self).__init__(controller, primary, address, name)
+        super(FlairPuck, self).__init__(controller, primary, address, name)
         self.queryON = True
         self.name = name
         self.objPuck = puck
