@@ -12,6 +12,7 @@ import time
 import json
 import sys
 from flair_api import make_client
+from flair_api import EmptyBodyException
 
 LOGGER = polyinterface.LOGGER
 SERVERDATA = json.load(open('server.json'))
