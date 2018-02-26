@@ -90,7 +90,7 @@ class Controller(polyinterface.Controller):
                     #for vent in vents :
                     #    strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
                     #    self.addNode(FlairStructure(self, strHash, strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent))
-                except Exception as ex:
+                except HTTPException as ex:
                     LOGGER.error('Error vents NodeServer: %s', str(ex))
                 
                 roomNumber = roomNumber + 1
