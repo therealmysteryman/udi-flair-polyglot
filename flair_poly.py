@@ -76,13 +76,13 @@ class Controller(polyinterface.Controller):
             rooms = structure.get_rel('rooms')
             roomNumber = 1
             for room in rooms:
-                strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 7))
+                strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
              
                 try:
                     pucks = room.get_rel('pucks')
                     for puck in pucks:
                         strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                        self.addNode(FlairStructure(self, strHash,strHashRoom+strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck))
+                        self.addNode(FlairStructure(self, strHash,strHashRoom[:4]+strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck))
                 except EmptyBodyException as ex:
                     pass
             
@@ -90,7 +90,7 @@ class Controller(polyinterface.Controller):
                     vents = room.get_rel('vents')
                     for vent in vents :
                         strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                        self.addNode(FlairStructure(self, strHash, strHashRoom+strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent))
+                        self.addNode(FlairStructure(self, strHash, strHashRoom[:4]+strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent))
                 except EmptyBodyException as ex:
                     pass
                 
