@@ -29,6 +29,6 @@ AWAY_SEL-1 = Manual
 AWAY_SEL-2 = Third Party Home Away
 AWAY_SEL-3 = Flair Autohome Autoaway
 
-SETPMODE_SEL-1 = Home Evenness Flair SetPoint
-SETPMODE_SEL-2 = Home Evenness Follow Third Party
-SETPMODE_SEL-3 = Home Evenness For Active Rooms Follow Third Party
+SETPM_SEL-1 = Flair SetPoint
+SETPM_SEL-2 = Follow Third Party
+SETPM_SEL-3 = Active Rooms Follow Third Party
