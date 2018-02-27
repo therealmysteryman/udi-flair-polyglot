@@ -19,6 +19,6 @@ ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
 ST-CLISPC-NAME = Set Point
 
-ASEL-0 = manual
-ASEL-1 = auto
+AB-0 = manual
+AB-1 = auto
 
