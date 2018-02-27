@@ -140,9 +140,9 @@ class FlairStructure(polyinterface.Node):
     drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
                 {'driver': 'GV3', 'value': 0, 'uom': 2},
-                {'driver': 'GV4', 'value': 0, 'uom': 25},
-                {'driver': 'GV5', 'value': 0, 'uom': 25},
-                {'driver': 'GV6', 'value': 0, 'uom': 25}]
+                {'driver': 'GV4', 'value': 1, 'uom': 25},
+                {'driver': 'GV5', 'value': 1, 'uom': 25},
+                {'driver': 'GV6', 'value': 1, 'uom': 25}]
     
     id = 'FLAIR_STRUCT'
     commands = {
