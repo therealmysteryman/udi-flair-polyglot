@@ -51,6 +51,7 @@ class Controller(polyinterface.Controller):
                 
                 self.discover()
                 self.query()
+                self.poly.installprofile()
                 
         except Exception as ex:
             LOGGER.error('Error starting Flair NodeServer: %s', str(ex))
