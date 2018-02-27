@@ -13,12 +13,7 @@
     <nodeDef id="FLAIR_STRUCT" nls="FS">
         <editors />
         <sts>
-            <st id="GV2" editor="bool" />
-            <st id="CLITEMP" editor="temp" />
-            <st id="GV3" editor="bool" />
             <st id="GV4" editor="smode" />
-            <st id="GV5" editor="saway" />
-            <st id="GV6" editor="ssetpm" />
         </sts>
         <cmds>
             <sends />
