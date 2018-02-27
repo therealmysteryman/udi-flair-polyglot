@@ -18,6 +18,9 @@
         <cmds>
             <sends />
             <accepts>
+                <cmd id="SET_MODE">
+                    <p id="" editor="smode" init="GV4" />
+                </cmd>
             </accepts>
         </cmds>
     </nodeDef>
