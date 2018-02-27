@@ -13,14 +13,14 @@
         </editor>
         
         <editor id="smode">
-		<range uom="25" subset="1-2" nls="MODESEL" />
+		<range uom="25" subset="0-1" nls="MODESEL" />
 	</editor>
         
          <editor id="saway">
-		<range uom="25" subset="1-3" nls="AWAYSEL" />
+		<range uom="25" subset="0-2" nls="AWAYSEL" />
 	</editor>
         
         <editor id="ssetpm">
-                <range uom="25" subset="1-3" nls="SETPMSEL" />
+                <range uom="25" subset="0-2" nls="SETPMSEL" />
 	</editor>
 </editors>
