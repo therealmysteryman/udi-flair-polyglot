@@ -12,6 +12,6 @@
                 <range uom="22" subset="0-100" />
         </editor>
         <editor id="smode">
-		<range uom="25" subset="0-1" nls="MODESEL" />
+		<range uom="25" subset="0-1" nls="ASEL" />
 	</editor>
 </editors>
