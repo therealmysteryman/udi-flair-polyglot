@@ -13,7 +13,22 @@ ND-FLAIR_ROOM-ICON = TempSensor
 ST-ST-NAME = Connected
 ST-GV1-NAME = Open
 ST-GV2-NAME = Inactive
+ST-GV3-NAME = Home Status
+ST-GV4-NAME = Mode
+ST-GV5-NAME = Home Away Mode
+ST-GV6-NAME = Home Evennesss
 
 ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
 ST-CLISPC-NAME = Set Point
+
+MODE_SEL-1 = manual
+MODE_SEL-2 = auto
+
+AWAY_SEL-1 = Manual
+AWAY_SEL-2 = Third Party Home Away
+AWAY_SEL-3 = Flair Autohome Autoaway
+
+SETPMODE_SEL-1 = Home Evenness Flair SetPoint
+SETPMODE_SEL-2 = Home Evenness Follow Third Party
+SETPMODE_SEL-3 = Home Evenness For Active Rooms Follow Third Party
