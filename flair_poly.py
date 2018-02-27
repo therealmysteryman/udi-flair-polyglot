@@ -122,32 +122,27 @@ class FlairStructure(polyinterface.Node):
         self.query()
     
     def query(self):
-        if  self.objStructure.attributes['is-active'] is True:
-            self.setDriver('GV2', 1)
-        else:
-            self.setDriver('GV2', 0)
+        #if  self.objStructure.attributes['is-active'] is True:
+        #    self.setDriver('GV2', 1)
+        #else:
+         #   self.setDriver('GV2', 0)
         
-        self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1))
+        #self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1))
         
-        if  self.objStructure.attributes['home'] is True:
-            self.setDriver('GV3', 1)
-        else:
-            self.setDriver('GV3', 0)
+        #if  self.objStructure.attributes['home'] is True:
+        #    self.setDriver('GV3', 1)
+        #else:
+        #    self.setDriver('GV3', 0)
                 
         #self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']))
         #self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']))
         #self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']))
         #self.reportDrivers()
         self.setDriver('GV4',0,True)
-        self.setDriver('GV5',0,True)
-        self.setDriver('GV6',0,True)
+        #self.setDriver('GV5',0,True)
+        #self.setDriver('GV6',0,True)
                
-    drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
-                {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
-                {'driver': 'GV3', 'value': 0, 'uom': 2},
-                {'driver': 'GV4', 'value': 1, 'uom': 25},
-                {'driver': 'GV5', 'value': 1, 'uom': 25},
-                {'driver': 'GV6', 'value': 1, 'uom': 25}]
+    drivers = [{'driver': 'GV4', 'value': 1, 'uom': 25}]
     
     id = 'FLAIR_STRUCT'
     commands = {
