@@ -13,13 +13,13 @@
     <nodeDef id="FLAIR_STRUCT" nls="FS">
         <editors />
         <sts>
-            <st id="GV4" editor="smode" />
+            <st id="GV4" editor="mode" />
         </sts>
         <cmds>
             <sends />
             <accepts>
                 <cmd id="SET_MODE">
-                    <p id="" editor="smode" init="GV4" />
+                    <p id="" editor="mode" init="GV4" />
                 </cmd>
             </accepts>
         </cmds>
