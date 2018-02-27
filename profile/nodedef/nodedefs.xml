@@ -18,7 +18,7 @@
             <st id="GV3" editor="bool" />
             <st id="GV4" editor="smode" />
             <st id="GV5" editor="saway" />
-            <st id="GV6" editor="ssetpmode" />
+            <st id="GV6" editor="ssetpm" />
         </sts>
         <cmds>
             <sends />
