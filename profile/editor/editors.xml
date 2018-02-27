@@ -10,5 +10,17 @@
         </editor>   
         <editor id="hum">
                 <range uom="22" subset="0-100" />
-        </editor>   
+        </editor>
+        
+        <editor id="smode">
+		<range uom="25" subset="1-2" nls="MODE_SEL" />
+	</editor>
+        
+         <editor id="saway">
+		<range uom="25" subset="1-3" nls="AWAY_SEL" />
+	</editor>
+        
+        <editor id="ssetpmode">
+                <range uom="25" subset="1-3" nls="SETPMODE_SEL" />
+	</editor>
 </editors>
