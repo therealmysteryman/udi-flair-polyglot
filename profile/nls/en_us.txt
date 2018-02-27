@@ -1,4 +1,3 @@
-
 ND-FLAIR_STRUCT-NAME = Flair Structure
 ND-FLAIR_STRUCT-ICON = GenericCtl
 ND-controller-NAME = Flair
