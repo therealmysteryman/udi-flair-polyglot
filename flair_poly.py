@@ -114,12 +114,26 @@ class FlairStructure(polyinterface.Node):
         self.objStructure = struct
    
     def start(self):
-        self.setDriver('ST', 1)
-        
+        self.query()
+    
     def query(self):
-        self.setDriver('ST', 1)
-             
-    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
+        if  self.objStructure.attributes['is-active'] is True:
+            self.setDriver('GV2', 1)
+        else:
+            self.setDriver('GV2', 0)
+        
+        self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1))
+        self.setDriver('GV3', self.objStructure.attributes['home'])
+        
+        LOGGER.info(self.objStructure.attributes['set-point-mode'])
+        LOGGER.info(self.objStructure.attributes['structure-away-mode'])
+        LOGGER.info(self.objStructure.attributes['home-away-mode'])
+        LOGGER.info(self.objStructure.attributes['mode'])
+        LOGGER.info(self.objStructure.attributes['state'])
+               
+    drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
+                {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
+                {'driver': 'GV3', 'value': 0, 'uom': 2}]
     
     id = 'FLAIR_STRUCT'
     commands = {
