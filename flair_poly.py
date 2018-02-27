@@ -106,6 +106,10 @@ class Controller(polyinterface.Controller):
     
 class FlairStructure(polyinterface.Node):
 
+    SPM = ['Home Evenness Flair SetPoint','Home Evenness Follow Third Party','Home Evenness For Active Rooms Follow Third Party']
+    HAM = ['Manual','Third Party Home Away','Flair Autohome Autoaway']
+    MODE = ['manual','auto']
+    
     def __init__(self, controller, primary, address, name, struct):
 
         super(FlairStructure, self).__init__(controller, primary, address, name)
@@ -123,17 +127,22 @@ class FlairStructure(polyinterface.Node):
             self.setDriver('GV2', 0)
         
         self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1))
-        self.setDriver('GV3', self.objStructure.attributes['home'])
         
-        LOGGER.info(self.objStructure.attributes['set-point-mode'])
-        LOGGER.info(self.objStructure.attributes['structure-away-mode'])
-        LOGGER.info(self.objStructure.attributes['home-away-mode'])
-        LOGGER.info(self.objStructure.attributes['mode'])
-        LOGGER.info(self.objStructure.attributes['state'])
+        if  self.objStructure.attributes['home'] is True:
+            self.setDriver('GV3', 1)
+        else:
+            self.setDriver('GV3', 0)
+                
+        self.setDriver('GV4', SPM.index(self.objStructure.attributes['set-point-mode'])+1 )
+        self.setDriver('GV5', SPM.index(self.objStructure.attributes['home-away-mode'])+1 )
+        self.setDriver('GV6', SPM.index(self.objStructure.attributes['mode'])+1 )
                
     drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
-                {'driver': 'GV3', 'value': 0, 'uom': 2}]
+                {'driver': 'GV3', 'value': 0, 'uom': 2},
+                {'driver': 'GV4', 'value': 0, 'uom': 25},
+                {'driver': 'GV5', 'value': 0, 'uom': 25},
+                {'driver': 'GV6', 'value': 0, 'uom': 25}]
     
     id = 'FLAIR_STRUCT'
     commands = {
