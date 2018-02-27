@@ -21,4 +21,5 @@ ST-CLISPC-NAME = Set Point
 
 AB-0 = manual
 AB-1 = auto
+AB-2 = auto2
 
