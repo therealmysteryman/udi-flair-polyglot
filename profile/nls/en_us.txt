@@ -22,13 +22,13 @@ ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
 ST-CLISPC-NAME = Set Point
 
-MODESEL-1 = manual
-MODESEL-2 = auto
+MODESEL-0 = manual
+MODESEL-1 = auto
 
-AWAYSEL-1 = Manual
-AWAYSEL-2 = Third Party Home Away
-AWAYSEL-3 = Flair Autohome Autoaway
+AWAYSEL-0 = Manual
+AWAYSEL-1 = Third Party
+AWAYSEL-2 = Flair
 
-SETPMSEL-1 = Flair SetPoint
-SETPMSEL-2 = Follow Third Party
-SETPMSEL-3 = Active Rooms Follow Third Party
+SETPMSEL-0 = Flair SetPoint
+SETPMSEL-1 = Follow
+SETPMSEL-2 = Active Rooms
