@@ -133,9 +133,9 @@ class FlairStructure(polyinterface.Node):
         else:
             self.setDriver('GV3', 0)
                 
-        self.setDriver('GV4', SPM.index(self.objStructure.attributes['set-point-mode'])+1 )
-        self.setDriver('GV5', SPM.index(self.objStructure.attributes['home-away-mode'])+1 )
-        self.setDriver('GV6', SPM.index(self.objStructure.attributes['mode'])+1 )
+        self.setDriver('GV4', self.SPM.index(self.objStructure.attributes['set-point-mode'])+1 )
+        self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode'])+1 )
+        self.setDriver('GV6', self.MODE.index(self.objStructure.attributes['mode'])+1 )
                
     drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
