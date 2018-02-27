@@ -11,16 +11,7 @@
         <editor id="hum">
                 <range uom="22" subset="0-100" />
         </editor>
-        
         <editor id="smode">
 		<range uom="25" subset="0-1" nls="MODESEL" />
-	</editor>
-        
-         <editor id="saway">
-		<range uom="25" subset="0-2" nls="AWAYSEL" />
-	</editor>
-        
-        <editor id="ssetpm">
-                <range uom="25" subset="0-2" nls="SETPMSEL" />
 	</editor>
 </editors>
