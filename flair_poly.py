@@ -72,31 +72,31 @@ class Controller(polyinterface.Controller):
         structures = self.api_client.get('structures')
         for structure in structures:
             strHash = str(int(hashlib.md5(structure.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-            self.addNode(FlairStructure(self, self.address, strHash,structure.attributes['name'],structure))
+            self.addNode(FlairStructure(self, strHash, strHash,structure.attributes['name'],structure))
             #time.sleep(5)
-            #rooms = structure.get_rel('rooms')
-            #roomNumber = 1
-            #for room in rooms:
-            #    strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                #self.addNode(FlairRoom(self, strHash,strHashRoom,'R' + str(roomNumber) + '_' + room.attributes['name'],room))
+            rooms = structure.get_rel('rooms')
+            roomNumber = 1
+            for room in rooms:
+                strHashRoom = str(int(hashlib.md5(room.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
+                self.addNode(FlairRoom(self, strHash,strHashRoom,'R' + str(roomNumber) + '_' + room.attributes['name'],room))
                 
-            #    try:
-            #        pucks = room.get_rel('pucks')
-            #        for puck in pucks:
-            #            strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-                        #self.addNode(FlairPuck(self, strHash,strHashRoom[:4]+strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck,room))
-            #    except EmptyBodyException as ex:
-            #        pass
+                try:
+                    pucks = room.get_rel('pucks')
+                    for puck in pucks:
+                        strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
+                        self.addNode(FlairPuck(self, strHash,strHashRoom[:4]+strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck,room))
+                except EmptyBodyException as ex:
+                    pass
             
-            #    try:
-            #        vents = room.get_rel('vents')
-            #        for vent in vents :
-            #            strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
+                try:
+                    vents = room.get_rel('vents')
+                    for vent in vents :
+                        strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
                         #self.addNode(FlairVent(self, strHash, strHashRoom[:4]+strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent,room))
-            #    except EmptyBodyException as ex:
-            #        pass
+                except EmptyBodyException as ex:
+                    pass
                 
-             #   roomNumber = roomNumber + 1
+                roomNumber = roomNumber + 1
                            
     def delete(self):
         LOGGER.info('Deleting Flair')
@@ -120,40 +120,28 @@ class FlairStructure(polyinterface.Node):
    
     def start(self):
         self.query()
-    
-    def setOn(self, command):
-        pass
-    
-    def setOff(self, command):
-        pass
-    
+   
     def query(self):
-        #if  self.objStructure.attributes['is-active'] is True:
-        #    self.setDriver('GV2', 1)
-        #else:
-         #   self.setDriver('GV2', 0)
+        if  self.objStructure.attributes['is-active'] is True:
+            self.setDriver('GV2', 1)
+        else:
+            self.setDriver('GV2', 0)
         
-        #self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1))
+        self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1))
         
-        #if  self.objStructure.attributes['home'] is True:
-        #    self.setDriver('GV3', 1)
-        #else:
-        #    self.setDriver('GV3', 0)
+        if  self.objStructure.attributes['home'] is True:
+            self.setDriver('GV3', 1)
+        else:
+            self.setDriver('GV3', 0)
                 
-        #self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']))
-        #self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']))
-        #self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']))
-        #self.reportDrivers()
-        self.setDriver('GV4',0,True)
-        #self.setDriver('GV5',0,True)
-        #self.setDriver('GV6',0,True)
+        self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']))
+        self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']))
+        self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']))
                
     drivers = [{'driver': 'GV4', 'value': 1, 'uom': 25}]
     
     id = 'FLAIR_STRUCT'
-    commands = {        'DON': setOn,
-                    'DOF': setOff,
-                }
+    commands = {}
    
 class FlairVent(polyinterface.Node):
 
