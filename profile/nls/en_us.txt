@@ -1,17 +1,13 @@
-ND-FSTRUCT-NAME = Flair Structure
-ND-FSTRUCT-ICON = GenericCtl
-
+ND-FLAIR_STRUCT-NAME = Flair Structure
+ND-FLAIR_STRUCT-ICON = GenericCtl
 ND-controller-NAME = Flair
 ND-controller-ICON = GenericCtl
-
-ND-FVENT-NAME = Flair Vent
-ND-FVENT-ICON = Output
-
-ND-FPUCK-NAME = Flair Puck
-ND-FPUCK-ICON = Thermostat
-
-ND-FROOM-NAME = Flair Room
-ND-FROOM-ICON = TempSensor
+ND-FLAIR_VENT-NAME = Flair Vent
+ND-FLAIR_VENT-ICON = Output
+ND-FLAIR_PUCK-NAME = Flair Puck
+ND-FLAIR_PUCK-ICON = TempSensor
+ND-FLAIR_ROOM-NAME = Flair Room
+ND-FLAIR_ROOM-ICON = TempSensor
 
 ST-ST-NAME = Connected
 ST-GV1-NAME = Open
@@ -19,12 +15,19 @@ ST-GV2-NAME = Inactive
 ST-GV3-NAME = Home Status
 ST-GV4-NAME = Mode
 ST-GV5-NAME = Home Away Mode
-ST-GV6-NAME = Home Evenness
+ST-GV6-NAME = Home Evennesss
 
 ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
 ST-CLISPC-NAME = Set Point
 
-MODESL-0 = manual
-MODESL-1 = auto
-MODESL-2 = NA
+MODESEL-0 = manual
+MODESEL-1 = auto
+
+AWAYSEL-0 = Manual
+AWAYSEL-1 = Third Party
+AWAYSEL-2 = Flair
+
+SETPMSEL-0 = Flair SetPoint
+SETPMSEL-1 = Follow
+SETPMSEL-2 = Active Rooms
