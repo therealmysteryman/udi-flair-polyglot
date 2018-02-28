@@ -164,9 +164,12 @@ class FlairVent(polyinterface.Node):
         
     def start(self):
         self.query()
-        self.objVent.update(attributes={'percent-open': 0})
+        
 
-            
+    def SetOPEN(self):
+         self.objVent.update(attributes={'percent-open': int(command.get('value'))})
+         self.setDriver('GV1', self.objVent.attributes['percent-open'])
+        
     def query(self):
         if  self.objVent.attributes['inactive'] is True:
             self.setDriver('GV2', 1)
@@ -179,8 +182,7 @@ class FlairVent(polyinterface.Node):
               {'driver': 'GV1', 'value': 0, 'uom': 51}]
     
     id = 'FLAIR_VENT'
-    commands = {
-                }
+    commands = { 'SET_OPEN' : SetOPEN }
     
 class FlairPuck(polyinterface.Node):
 
