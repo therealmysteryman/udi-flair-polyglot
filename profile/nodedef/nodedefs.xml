@@ -10,15 +10,15 @@
             </accepts>
         </cmds>
     </nodeDef>
-    <nodeDef id="MILIGHT_LIGHT" nls="MGR">
+    <nodeDef id="FSTRUCT" nls="MGR">
         <editors />
         <sts>
-            <st id="ST" editor="MONOFF" />
-            <st id="GV5" editor="MCTEMP" />
-            <st id="GV1" editor="MCOLOR" />  <!-- Color -->
-            <st id="GV2" editor="MCLSAT" /> <!-- Saturation -->
-            <st id="GV3" editor="MCLBRI" /> <!-- Brightness -->
-            <st id="GV4" editor="MEFFECT" />
+            <st id="GV2" editor="bool" />
+            <st id="CLITEMP" editor="temp" />
+            <st id="GV3" editor="bool" />
+            <st id="GV4" editor="smode" />
+            <st id="GV5" editor="saway" />
+            <st id="GV6" editor="ssetpm" />
         </sts>
         <cmds>
             <sends />
