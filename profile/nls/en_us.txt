@@ -13,6 +13,8 @@ ND-FPUCK-ICON = Thermostat
 ND-FROOM-NAME = Flair Room
 ND-FROOM-ICON = TempSensor
 
+CMD-SET_MODE-NAME = Mode
+
 ST-ST-NAME = Connected
 ST-GV1-NAME = Open
 ST-GV2-NAME = Inactive
