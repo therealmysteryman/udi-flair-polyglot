@@ -14,7 +14,7 @@
         <editor id="smode">
 		<range uom="25" subset="0-1" nls="MODESEL" />
 	</editor>
-         <editor id="saway">
+ 	<editor id="saway">
 		<range uom="25" subset="0-2" nls="AWAYSEL" />
 	</editor>
         <editor id="ssetpm">
