@@ -49,9 +49,9 @@ class Controller(polyinterface.Controller):
                 # Connect to Flair API
                 self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
                 
-                self.poly.installprofile()
+                #self.poly.installprofile()
                 self.discover()
-                self.query()
+                #self.query()
                 
                 
         except Exception as ex:
