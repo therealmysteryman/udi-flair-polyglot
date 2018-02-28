@@ -5,7 +5,7 @@ ND-controller-ICON = GenericCtl
 ND-FLAIR_VENT-NAME = Flair Vent
 ND-FLAIR_VENT-ICON = Output
 ND-FLAIR_PUCK-NAME = Flair Puck
-ND-FLAIR_PUCK-ICON = TempSensor
+ND-FLAIR_PUCK-ICON = Thermostat
 ND-FLAIR_ROOM-NAME = Flair Room
 ND-FLAIR_ROOM-ICON = TempSensor
 
@@ -21,8 +21,8 @@ ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
 ST-CLISPC-NAME = Set Point
 
-MODESEL-0 = manual
-MODESEL-1 = auto
+MODESEL-0 = Manual
+MODESEL-1 = Auto
 
 AWAYSEL-0 = Manual
 AWAYSEL-1 = Third Party
