@@ -21,6 +21,8 @@ ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
 ST-CLISPC-NAME = Set Point
 
+CMD-SET_OPEN-NAME = Vent Open
+
 MODESEL-0 = Manual
 MODESEL-1 = Auto
 
