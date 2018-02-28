@@ -122,7 +122,7 @@ class FlairStructure(polyinterface.Node):
     def start(self):
         self.query()
    
-    def query(self, command):
+    def query(self):
         if  self.objStructure.attributes['is-active'] is True:
             self.setDriver('GV2', 1)
         else:
@@ -162,8 +162,7 @@ class FlairVent(polyinterface.Node):
     def start(self):
         self.query()
         
-
-    def SetOPEN(self):
+    def SetOPEN(self, command):
          self.objVent.update(attributes={'percent-open': int(command.get('value'))})
          self.setDriver('GV1', self.objVent.attributes['percent-open'])
         
