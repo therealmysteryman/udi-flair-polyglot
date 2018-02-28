@@ -164,6 +164,8 @@ class FlairVent(polyinterface.Node):
         
     def start(self):
         self.query()
+        self.objVent.update(attributes={'percent-open': 0})
+
             
     def query(self):
         if  self.objVent.attributes['inactive'] is True:
