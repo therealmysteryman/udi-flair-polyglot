@@ -72,7 +72,7 @@ class Controller(polyinterface.Controller):
         structures = self.api_client.get('structures')
         for structure in structures:
             strHash = str(int(hashlib.md5(structure.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
-            self.addNode(FlairStructure(self, strHash, strHash,structure.attributes['name'],structure))
+            self.addNode(FlairStructure(self, self, strHash,structure.attributes['name'],structure))
             #time.sleep(5)
             #rooms = structure.get_rel('rooms')
             #roomNumber = 1
