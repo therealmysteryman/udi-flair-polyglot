@@ -122,7 +122,7 @@ class FlairStructure(polyinterface.Node):
     def start(self):
         self.query()
    
-    def query(self):
+    def query(self, command):
         if  self.objStructure.attributes['is-active'] is True:
             self.setDriver('GV2', 1)
         else:
@@ -138,11 +138,7 @@ class FlairStructure(polyinterface.Node):
         self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']))
         self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']))
         self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']))
-        
-        #self.setDriver('GV6',0)
-        #self.setDriver('GV5',0)
-        #self.setDriver('GV4',0)
-        
+                
     drivers = [{'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
                 {'driver': 'GV3', 'value': 0, 'uom': 2},
