@@ -35,6 +35,9 @@
         <cmds>
             <sends />
             <accepts>
+                <cmd id="SET_OPEN">
+                    <p id="" editor="percent" init="GV1" />
+                </cmd>
             </accepts>
         </cmds>
     </nodeDef>
