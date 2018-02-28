@@ -145,7 +145,8 @@ class FlairStructure(polyinterface.Node):
     drivers = [{'driver': 'GV4', 'value': 1, 'uom': 25}]
     
     id = 'FSTRUCT'
-    commands = {
+    commands = {        'DON': setOn,
+                    'DOF': setOff,
                 }
    
 class FlairVent(polyinterface.Node):
