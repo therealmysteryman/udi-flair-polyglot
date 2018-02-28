@@ -49,9 +49,10 @@ class Controller(polyinterface.Controller):
                 # Connect to Flair API
                 self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
                 
+                self.poly.installprofile()
                 self.discover()
                 self.query()
-                #self.poly.installprofile()
+                
                 
         except Exception as ex:
             LOGGER.error('Error starting Flair NodeServer: %s', str(ex))
