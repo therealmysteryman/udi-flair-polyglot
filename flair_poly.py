@@ -144,7 +144,7 @@ class FlairStructure(polyinterface.Node):
                
     drivers = [{'driver': 'GV4', 'value': 1, 'uom': 25}]
     
-    id = 'FLAIR_STRUCT'
+    id = 'FSTRUCT'
     commands = {
                 }
    
