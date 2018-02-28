@@ -121,6 +121,12 @@ class FlairStructure(polyinterface.Node):
     def start(self):
         self.query()
     
+    def setOn(self, command):
+        pass
+    
+    def setOff(self, command):
+        pass
+    
     def query(self):
         #if  self.objStructure.attributes['is-active'] is True:
         #    self.setDriver('GV2', 1)
