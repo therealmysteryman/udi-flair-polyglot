@@ -150,7 +150,7 @@ class FlairStructure(polyinterface.Node):
                
     drivers = [{'driver': 'GV4', 'value': 1, 'uom': 25}]
     
-    id = 'FSTRUCT'
+    id = 'MILIGHT_LIGHT'
     commands = {        'DON': setOn,
                     'DOF': setOff,
                 }
