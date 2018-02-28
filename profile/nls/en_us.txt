@@ -1,32 +1,54 @@
-ND-FSTRUCT-NAME = Flair Structure
-ND-FSTRUCT-ICON = GenericCtl
+# controller
+ST-controller-ST-NAME = Connected
 
-ND-controller-NAME = Flair
+ND-MILIGHT_LIGHT-NAME = Milight Light
+ND-MILIGHT_LIGHT-ICON = Lamp
+ND-MILIGHT_BRIDGE-NAME = Milight iBox
+ND-MILIGHT_BRIDGE-ICON = LampAndSwitch
+ND-controller-NAME = Milight Hub
 ND-controller-ICON = GenericCtl
 
-ND-FVENT-NAME = Flair Vent
-ND-FVENT-ICON = Output
+ST-GV1-NAME = Color ID
+ST-GV2-NAME = Saturation
+ST-GV3-NAME = Brightness
+ST-GV4-NAME = Effect
+ST-GV5-NAME = White Temperature
+ST-GV6-NAME = Color
+ST-CLITEMP-NAME = Temperature
 
-ND-FPUCK-NAME = Flair Puck
-ND-FPUCK-ICON = Thermostat
+CMD-DON-NAME = On
+CMD-DOF-NAME = Off
+CMD-SET_SAT-NAME = Set Saturation
+CMD-SET_BRI-NAME = Set Brightness
+CMD-CLITEMP-NAME = Set Color Temperature
+CMD-SET_COLOR-NAME = Set Colour
+CMD-SET_COLOR_ID-NAME = Set Colour ID
+CMD-CLITEMP-NAME = Set White Temperature
+CMD-SET_EFFECT-NAME = Set Effect
+CMD-WHITE_MODE-NAME = White Mode
+CMD-NIGHT_MODE-NAME = Night Mode
 
-ND-FROOM-NAME = Flair Room
-ND-FROOM-ICON = TempSensor
+COLOR_SEL-1 = Aqua
+COLOR_SEL-2 = Blue
+COLOR_SEL-3 = Green
+COLOR_SEL-4 = Lavender
+COLOR_SEL-5 = Lime
+COLOR_SEL-6 = Orange
+COLOR_SEL-7 = Red
+COLOR_SEL-8 = Yellow
 
-CMD-SET_MODE-NAME = Mode
+TEMP_SEL-1 = WARM 2700K
+TEMP_SEL-2 = WARM WHITE 3000K
+TEMP_SEL-3 = COOL WHITE 4000K
+TEMP_SEL-4 = DAYLIGHT 5000K
+TEMP_SEL-5 = COOL DAYLIGHT 6500K
 
-ST-ST-NAME = Connected
-ST-GV1-NAME = Open
-ST-GV2-NAME = Inactive
-ST-GV3-NAME = Home Status
-ST-GV4-NAME = Mode
-ST-GV5-NAME = Home Away Mode
-ST-GV6-NAME = Home Evenness
-
-ST-CLITEMP-NAME = Current Temperature
-ST-CLIHUM-NAME = Current Humidity
-ST-CLISPC-NAME = Set Point
-
-MODESL-0 = manual
-MODESL-1 = auto
-MODESL-2 = NA
+COLORLOOP-1 = Fire
+COLORLOOP-2 = Rainbow Fade
+COLORLOOP-3 = White Fade
+COLORLOOP-4 = RGBW Fade
+COLORLOOP-5 = Rainbow Fast
+COLORLOOP-6 = Random
+COLORLOOP-7 = Red Flash
+COLORLOOP-8 = Green Flash
+COLORLOOP-9 = Blue Flash
