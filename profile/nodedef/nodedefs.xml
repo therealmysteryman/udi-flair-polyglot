@@ -23,6 +23,7 @@
         <cmds>
             <sends />
             <accepts>
+                <cmd id="QUERY" />
                 <cmd id="SET_MODE">
                     <p id="" editor="smode" init="GV4" />
                 </cmd>
@@ -44,6 +45,7 @@
         <cmds>
             <sends />
             <accepts>
+                <cmd id="QUERY" />
                 <cmd id="SET_OPEN">
                     <p id="" editor="percent" init="GV1" />
                 </cmd>
@@ -60,6 +62,7 @@
         <cmds>
             <sends />
             <accepts>
+                <cmd id="QUERY" />
             </accepts>
         </cmds>
     </nodeDef>
@@ -74,6 +77,7 @@
         <cmds>
             <sends />
             <accepts>
+                <cmd id="QUERY" />
             </accepts>
         </cmds>
     </nodeDef>
