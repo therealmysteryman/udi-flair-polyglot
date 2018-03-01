@@ -50,7 +50,6 @@ class Controller(polyinterface.Controller):
                 self.setDriver('ST', 1)
                 
                 # Connect to Flair API
-                self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
                 self.discover()
                 
         except Exception as ex:
@@ -66,7 +65,11 @@ class Controller(polyinterface.Controller):
                 return
             else:
                 self.discovery_thread = None
+                self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
                 self.query()
+        else:
+            self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
+            self.query()
      
     def query(self):
         for node in self.nodes:
