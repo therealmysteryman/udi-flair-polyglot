@@ -114,7 +114,7 @@ class Controller(polyinterface.Controller):
                         strHashPucks = str(int(hashlib.md5(puck.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
                         self.addNode(FlairPuck(self, strHash,strHashRoom[:4]+strHashPucks,'R' + str(roomNumber) + '_' + puck.attributes['name'],puck,room))
                 except EmptyBodyException as ex:
-                    LOGGER.error('Error _discovery_process: %s', str(ex))
+                    pass
             
                 try:
                     vents = room.get_rel('vents')
@@ -122,7 +122,7 @@ class Controller(polyinterface.Controller):
                         strHashVents = str(int(hashlib.md5(vent.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
                         self.addNode(FlairVent(self, strHash, strHashRoom[:4]+strHashVents ,'R' + str(roomNumber) + '_' + vent.attributes['name'],vent,room))
                 except EmptyBodyException as ex:
-                    LOGGER.error('Error _discovery_process: %s', str(ex))
+                    pass
                 
                 roomNumber = roomNumber + 1
                            
