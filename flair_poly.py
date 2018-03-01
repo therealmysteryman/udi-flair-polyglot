@@ -253,8 +253,8 @@ class FlairRoom(polyinterface.Node):
         self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1))
     
     def setTemp(self, command):
-        self.objRoom.update(attributes={'current-temperature-c': int(command.get('value'))})
-        self.setDriver('CLITEMP', round(self.objRoom.attributes['current-temperature-c'],1))
+        self.objRoom.update(attributes={'set-point-c': command.get('value')})
+        self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1))
             
     drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
