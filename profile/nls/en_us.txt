@@ -27,6 +27,7 @@ CMD-SET_OPEN-NAME = Set Open
 CMD-SET_MODE-NAME = Set Mode
 CMD-SET_AWAY-NAME = Set Away
 CMD-SET_EVENESS-NAME = Set Room Evenness
+CMD-DISCOVERY-NAME = Discover
 
 MODESEL-0 = Manual
 MODESEL-1 = Auto
