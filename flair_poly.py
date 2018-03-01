@@ -29,6 +29,7 @@ class Controller(polyinterface.Controller):
         self.client_secret = ""
         self.api_client = None
         self.tries = 0
+        self.discovery_thread = None
 
     def start(self):
         LOGGER.info('Started Flair for v2 NodeServer version %s', str(VERSION))
@@ -57,14 +58,28 @@ class Controller(polyinterface.Controller):
         pass
 
     def longPoll(self):
-        self.query()
-
+        if self.discovery_thread is not None:
+            if self.discovery_thread.isAlive():
+                LOGGER.debug('Skipping longPoll() while discovery in progress...')
+                return
+            else:
+                self.discovery_thread = None
+                self.query()
+     
     def query(self):
         for node in self.nodes:
             if self.nodes[node].queryON == True :
                 self.nodes[node].query()
         
-    def discover(self, *args, **kwargs):
+    def discover(self, *args, **kwargs):  
+        if self.discovery_thread is not None:
+            if self.discovery_thread.isAlive():
+                LOGGER.info('Discovery is still in progress')
+                return
+        self.discovery_thread = Thread(target=self._discovery_process)
+        self.discovery_thread.start()
+
+    def _discover_process(self):
         time.sleep(1)
         structures = self.api_client.get('structures')
         for structure in structures:
