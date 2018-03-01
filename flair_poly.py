@@ -72,9 +72,11 @@ class Controller(polyinterface.Controller):
         for node in self.nodes:
             if self.nodes[node].queryON == True :
                 self.nodes[node].query()
-        
+    
+    def runDiscover(self,command):
+        self.discover()
+    
     def discover(self, *args, **kwargs):  
-        time.sleep(1)
         if self.discovery_thread is not None:
             if self.discovery_thread.isAlive():
                 LOGGER.info('Discovery is still in progress')
@@ -83,6 +85,7 @@ class Controller(polyinterface.Controller):
         self.discovery_thread.start()
 
     def _discovery_process(self):
+        time.sleep(1)
         structures = self.api_client.get('structures')
         for structure in structures:
             strHash = str(int(hashlib.md5(structure.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
@@ -116,7 +119,7 @@ class Controller(polyinterface.Controller):
         LOGGER.info('Deleting Flair')
         
     id = 'controller'
-    commands = {}
+    commands = {'DISCOVERY' : runDiscover}
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
     
 class FlairStructure(polyinterface.Node):
