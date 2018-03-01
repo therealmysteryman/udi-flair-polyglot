@@ -122,6 +122,18 @@ class FlairStructure(polyinterface.Node):
     def start(self):
         self.query()
    
+    def setMode(self, command):
+        self.objStructure.update(attributes={'mode': self.MODE[int(command.get('value'))]})
+        self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']))
+
+    def setAway(self, command):
+        self.objStructure.update(attributes={'home-away-mode': self.HAM[int(command.get('value'))]})
+        self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']))
+    
+    def setEven(self, command):
+        self.objStructure.update(attributes={'set-point-mode': self.SPM[int(command.get('value'))]})
+        self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']))
+
     def query(self):
         if  self.objStructure.attributes['is-active'] is True:
             self.setDriver('GV2', 1)
@@ -147,7 +159,9 @@ class FlairStructure(polyinterface.Node):
                 {'driver': 'GV6', 'value': 0, 'uom': 25}]
     
     id = 'FLAIR_STRUCT'
-    commands = {}
+    commands = {'SET_MODE' : setMode, 
+                'SET_AWAY' : setAway, 
+                'SET_EVENESS' : setEven }
    
 class FlairVent(polyinterface.Node):
 
