@@ -21,6 +21,7 @@ ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
 ST-CLISPC-NAME = Set Point
 
+CMD-QUERY-NAME = Query
 CMD-SET_OPEN-NAME = Set Open 
 CMD-SET_MODE-NAME = Set Mode
 CMD-SET_AWAY-NAME = Set Away
