@@ -251,15 +251,19 @@ class FlairRoom(polyinterface.Node):
             self.setDriver('CLIHUM', self.objRoom.attributes['current-humidity'])
         
         self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1))
-        
-             
+    
+    def setTemp(self, command):
+        self.objRoom.update(attributes={'current-temperature-c': int(command.get('value'))})
+        self.setDriver('CLITEMP', round(self.objRoom.attributes['current-temperature-c'],1))
+            
     drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
                 {'driver': 'CLIHUM', 'value': 0, 'uom': 22},
                 {'driver': 'CLISPC', 'value': 0, 'uom': 4}]
     
     id = 'FLAIR_ROOM'
-    commands = { 'QUERY': query }    
+    commands = { 'QUERY': query, 
+                 'SET_TEMP': setTemp }    
     
 if __name__ == "__main__":
     try:
