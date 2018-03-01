@@ -13,6 +13,7 @@ import json
 import sys
 from threading import Thread
 from flair_api import make_client
+from flair_api import ApiError
 from flair_api import EmptyBodyException
 
 LOGGER = polyinterface.LOGGER
@@ -135,15 +136,27 @@ class FlairStructure(polyinterface.Node):
         self.query()
    
     def setMode(self, command):
-        self.objStructure.update(attributes={'mode': self.MODE[int(command.get('value'))]})
+        try :
+            self.objStructure.update(attributes={'mode': self.MODE[int(command.get('value'))]})        
+        except ApiError as ex:
+            pass
+       
         self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']))
 
     def setAway(self, command):
-        self.objStructure.update(attributes={'home-away-mode': self.HAM[int(command.get('value'))]})
+        try:
+            self.objStructure.update(attributes={'home-away-mode': self.HAM[int(command.get('value'))]})
+        except ApiError as ex:
+            pass
+
         self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']))
     
     def setEven(self, command):
-        self.objStructure.update(attributes={'set-point-mode': self.SPM[int(command.get('value'))]})
+        try:    
+            self.objStructure.update(attributes={'set-point-mode': self.SPM[int(command.get('value'))]})
+        except ApiError as ex:
+            pass
+        
         self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']))
 
     def query(self):
@@ -190,8 +203,13 @@ class FlairVent(polyinterface.Node):
         self.query()
         
     def setOpen(self, command):
-         self.objVent.update(attributes={'percent-open': int(command.get('value'))})
-         self.setDriver('GV1', self.objVent.attributes['percent-open'])
+        
+        try:
+            self.objVent.update(attributes={'percent-open': int(command.get('value'))})
+        except ApiError as ex:
+            pass
+        
+        self.setDriver('GV1', self.objVent.attributes['percent-open'])
         
     def query(self):
         if  self.objVent.attributes['inactive'] is True:
@@ -265,7 +283,11 @@ class FlairRoom(polyinterface.Node):
         self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1))
     
     def setTemp(self, command):
-        self.objRoom.update(attributes={'set-point-c': command.get('value')})
+        try:
+            self.objRoom.update(attributes={'set-point-c': command.get('value')})
+        except ApiError as ex:
+            pass
+        
         self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1))
             
     drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
