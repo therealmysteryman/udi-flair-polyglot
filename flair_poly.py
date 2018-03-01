@@ -56,7 +56,13 @@ class Controller(polyinterface.Controller):
             LOGGER.error('Error starting Flair NodeServer: %s', str(ex))
 
     def shortPoll(self):
-        pass
+        if self.discovery_thread is not None:
+            if self.discovery_thread.isAlive():
+                LOGGER.debug('Skipping longPoll() while discovery in progress...')
+                return
+            else:
+                self.discovery_thread = None
+                self.query()
 
     def longPoll(self):
         if self.discovery_thread is not None:
@@ -66,8 +72,6 @@ class Controller(polyinterface.Controller):
             else:
                 self.discovery_thread = None
                 self.discover()
-        else:
-            self.discover()
      
     def query(self):
         for node in self.nodes:
