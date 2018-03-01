@@ -23,6 +23,15 @@
         <cmds>
             <sends />
             <accepts>
+                <cmd id="SET_MODE">
+                    <p id="" editor="smode" init="GV4" />
+                </cmd>
+                <cmd id="SET_AWAY">
+                    <p id="" editor="saway" init="GV5" />
+                </cmd>    
+                <cmd id="SET_EVENESS">
+                    <p id="" editor="ssetpm" init="GV6" />
+                </cmd>    
             </accepts>
         </cmds>
     </nodeDef>
