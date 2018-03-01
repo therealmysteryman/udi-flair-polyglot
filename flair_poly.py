@@ -80,7 +80,7 @@ class Controller(polyinterface.Controller):
         self.discovery_thread = Thread(target=self._discovery_process)
         self.discovery_thread.start()
 
-    def _discover_process(self):
+    def _discovery_process(self):
         time.sleep(1)
         structures = self.api_client.get('structures')
         for structure in structures:
