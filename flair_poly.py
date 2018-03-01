@@ -73,6 +73,7 @@ class Controller(polyinterface.Controller):
                 self.nodes[node].query()
         
     def discover(self, *args, **kwargs):  
+        time.sleep(1)
         if self.discovery_thread is not None:
             if self.discovery_thread.isAlive():
                 LOGGER.info('Discovery is still in progress')
@@ -81,11 +82,11 @@ class Controller(polyinterface.Controller):
         self.discovery_thread.start()
 
     def _discovery_process(self):
-        time.sleep(1)
         structures = self.api_client.get('structures')
         for structure in structures:
             strHash = str(int(hashlib.md5(structure.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
             self.addNode(FlairStructure(self, strHash, strHash,structure.attributes['name'],structure))
+            time.sleep(5)
             rooms = structure.get_rel('rooms')
             roomNumber = 1
             for room in rooms:
