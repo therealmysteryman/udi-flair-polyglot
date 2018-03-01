@@ -10,7 +10,7 @@ ND-FLAIR_ROOM-NAME = Flair Room
 ND-FLAIR_ROOM-ICON = TempSensor
 
 ST-ST-NAME = Connected
-ST-GV1-NAME = Open
+ST-GV1-NAME = Vent Open
 ST-GV2-NAME = Inactive
 ST-GV3-NAME = Home Status
 ST-GV4-NAME = Mode
@@ -21,7 +21,7 @@ ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
 ST-CLISPC-NAME = Set Point
 
-CMD-SET_OPEN-NAME = Vent Open
+CMD-SET_OPEN-NAME = Set Open 
 
 MODESEL-0 = Manual
 MODESEL-1 = Auto
