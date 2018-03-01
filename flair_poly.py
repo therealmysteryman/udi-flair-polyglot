@@ -48,11 +48,7 @@ class Controller(polyinterface.Controller):
                 
                 # Connect to Flair API
                 self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
-                
-                #self.poly.installprofile()
                 self.discover()
-                #self.query()
-                
                 
         except Exception as ex:
             LOGGER.error('Error starting Flair NodeServer: %s', str(ex))
@@ -74,7 +70,6 @@ class Controller(polyinterface.Controller):
         for structure in structures:
             strHash = str(int(hashlib.md5(structure.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
             self.addNode(FlairStructure(self, strHash, strHash,structure.attributes['name'],structure))
-            #time.sleep(5)
             rooms = structure.get_rel('rooms')
             roomNumber = 1
             for room in rooms:
