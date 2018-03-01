@@ -78,6 +78,9 @@
             <sends />
             <accepts>
                 <cmd id="QUERY" />
+                <cmd id="SET_TEMP">
+                    <p id="" editor="temp" init="CLITEMP" />
+                </cmd>
             </accepts>
         </cmds>
     </nodeDef>
