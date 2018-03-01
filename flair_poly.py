@@ -65,10 +65,8 @@ class Controller(polyinterface.Controller):
                 return
             else:
                 self.discovery_thread = None
-                self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
                 self.discover()
         else:
-            self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
             self.discover()
      
     def query(self):
@@ -89,6 +87,7 @@ class Controller(polyinterface.Controller):
 
     def _discovery_process(self):
         time.sleep(1)
+        self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
         structures = self.api_client.get('structures')
         for structure in structures:
             strHash = str(int(hashlib.md5(structure.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
