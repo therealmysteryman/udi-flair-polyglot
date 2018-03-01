@@ -66,10 +66,10 @@ class Controller(polyinterface.Controller):
             else:
                 self.discovery_thread = None
                 self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
-                self.query()
+                self.discover()
         else:
             self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
-            self.query()
+            self.discover()
      
     def query(self):
         for node in self.nodes:
