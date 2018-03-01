@@ -161,7 +161,8 @@ class FlairStructure(polyinterface.Node):
     id = 'FLAIR_STRUCT'
     commands = {'SET_MODE' : setMode, 
                 'SET_AWAY' : setAway, 
-                'SET_EVENESS' : setEven }
+                'SET_EVENESS' : setEven,
+                'QUERY': query }
    
 class FlairVent(polyinterface.Node):
 
@@ -192,7 +193,8 @@ class FlairVent(polyinterface.Node):
               {'driver': 'GV1', 'value': 0, 'uom': 51}]
     
     id = 'FLAIR_VENT'
-    commands = { 'SET_OPEN' : setOpen }
+    commands = { 'SET_OPEN' : setOpen,
+                 'QUERY': query}
     
 class FlairPuck(polyinterface.Node):
 
@@ -221,8 +223,7 @@ class FlairPuck(polyinterface.Node):
                 {'driver': 'CLIHUM', 'value': 0, 'uom': 22}]
     
     id = 'FLAIR_PUCK'
-    commands = {
-                }
+    commands = {  'QUERY': query }
 
 class FlairRoom(polyinterface.Node):
 
@@ -258,8 +259,7 @@ class FlairRoom(polyinterface.Node):
                 {'driver': 'CLISPC', 'value': 0, 'uom': 4}]
     
     id = 'FLAIR_ROOM'
-    commands = {
-                }    
+    commands = { 'QUERY': query }    
     
 if __name__ == "__main__":
     try:
