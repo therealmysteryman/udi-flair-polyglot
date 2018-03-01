@@ -1,0 +1,26 @@
+<editors>
+        <editor id="bool">
+                <range uom="2" subset="0,1" />
+        </editor>
+        <editor id="percent">
+                <range uom="51" min="0" max="100" prec="0" step="1" />
+        </editor>
+	<editor id="vpercent">
+                <range uom="51" subset="0,50,100" />
+        </editor> 
+        <editor id="temp">
+                <range uom="4" min="0" max="32" step="0.5" prec="1" />
+        </editor>   
+        <editor id="hum">
+                <range uom="22" subset="0-100" />
+        </editor>
+        <editor id="smode">
+		<range uom="25" subset="0-1" nls="MODESEL" />
+	</editor>
+ 	<editor id="saway">
+		<range uom="25" subset="0-2" nls="AWAYSEL" />
+	</editor>
+        <editor id="ssetpm">
+                <range uom="25" subset="0-2" nls="SETPMSEL" />
+	</editor>
+</editors>
