@@ -58,11 +58,12 @@ class Controller(polyinterface.Controller):
     def shortPoll(self):
         if self.discovery_thread is not None:
             if self.discovery_thread.isAlive():
-                LOGGER.debug('Skipping longPoll() while discovery in progress...')
+                LOGGER.debug('Skipping shortPoll() while discovery in progress...')
                 return
             else:
-                self.discovery_thread = None
                 self.query()
+        else:
+            self.query()
 
     def longPoll(self):
         if self.discovery_thread is not None:
