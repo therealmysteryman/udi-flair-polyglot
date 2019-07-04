@@ -75,10 +75,11 @@ class Controller(polyinterface.Controller):
                 self.discover()
      
     def query(self):
+        self.reportDrivers()
         for node in self.nodes:
             if self.nodes[node].queryON == True :
                 self.nodes[node].query()
-    
+                
     def runDiscover(self,command):
         self.discover()
     
@@ -188,6 +189,8 @@ class FlairStructure(polyinterface.Node):
             self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']))
             self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']))
             self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']))
+            self.reportDrivers()
+            
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))
             
@@ -233,6 +236,7 @@ class FlairVent(polyinterface.Node):
                 self.setDriver('GV2', 0)
 
             self.setDriver('GV1', self.objVent.attributes['percent-open'])
+            self.reportDrivers()
         
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))
@@ -266,6 +270,8 @@ class FlairPuck(polyinterface.Node):
 
             self.setDriver('CLITEMP', round(self.objPuck.attributes['current-temperature-c'],1))
             self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'])
+            self.reportDrivers()
+            
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))  
             
