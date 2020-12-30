@@ -48,7 +48,9 @@ class Controller(polyinterface.Controller):
                 LOGGER.error('Flair requires \'client_id\' \'client_secret\' parameters to be specified in custom configuration.')
                 return False
             else:
-                self.setDriver('ST', 1)
+                self.poly.installprofile()
+                self.setDriver('ST', 1, True)
+                self.reportDrivers()
                 
                 # Connect to Flair API
                 self.discover()
