@@ -32,6 +32,7 @@ class Controller(polyinterface.Controller):
         self.api_client = None
         self.tries = 0
         self.discovery_thread = None
+        self.hb = 0
 
     def start(self):
         LOGGER.info('Started Flair for v2 NodeServer version %s', str(VERSION))
@@ -62,8 +63,6 @@ class Controller(polyinterface.Controller):
                 return
             else:
                 self.query()
-        else:
-            self.query()
 
     def longPoll(self):
         if self.discovery_thread is not None:
@@ -73,13 +72,22 @@ class Controller(polyinterface.Controller):
             else:
                 self.discovery_thread = None
                 self.discover()
-     
+    
+    def heartbeat(self):
+        self.l_info('heartbeat','hb={}'.format(self.hb))
+        if self.hb == 0:
+            self.reportCmd("DON",2)
+            self.hb = 1
+        else:
+            self.reportCmd("DOF",2)
+            self.hb = 0
+    
     def query(self):
-        self.reportDrivers()
         for node in self.nodes:
             if self.nodes[node].queryON == True :
                 self.nodes[node].query()
-                
+        self.reportDrivers()
+    
     def runDiscover(self,command):
         self.discover()
     
@@ -132,7 +140,9 @@ class Controller(polyinterface.Controller):
         LOGGER.info('Deleting Flair')
         
     id = 'controller'
-    commands = {'DISCOVERY' : runDiscover}
+    commands = {    'QUERY': query,        
+                    'DISCOVERY' : runDiscover
+               }
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
     
 class FlairStructure(polyinterface.Node):
@@ -154,41 +164,44 @@ class FlairStructure(polyinterface.Node):
     def setMode(self, command):
         try :
             self.objStructure.update(attributes={'mode': self.MODE[int(command.get('value'))]})  
-            self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']))
+            self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']), True)
+            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setMode: %s', str(ex))
        
     def setAway(self, command):
         try:
             self.objStructure.update(attributes={'home-away-mode': self.HAM[int(command.get('value'))]})
-            self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']))
+            self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']), True)
+            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setAway: %s', str(ex))
     
     def setEven(self, command):
         try:    
             self.objStructure.update(attributes={'set-point-mode': self.SPM[int(command.get('value'))]})
-            self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']))
+            self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']), True)
+            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setEven: %s', str(ex))
             
     def query(self):
         try:
             if  self.objStructure.attributes['is-active'] is True:
-                self.setDriver('GV2', 1)
+                self.setDriver('GV2', 1, True)
             else:
-                self.setDriver('GV2', 0)
+                self.setDriver('GV2', 0, True)
 
-            self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1))
+            self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1), True)
 
             if  self.objStructure.attributes['home'] is True:
-                self.setDriver('GV3', 1)
+                self.setDriver('GV3', 1, True)
             else:
-                self.setDriver('GV3', 0)
+                self.setDriver('GV3', 0, True)
 
-            self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']))
-            self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']))
-            self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']))
+            self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']), True)
+            self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']), True)
+            self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']), True)
             self.reportDrivers()
             
         except ApiError as ex:
@@ -224,18 +237,19 @@ class FlairVent(polyinterface.Node):
         
         try:
             self.objVent.update(attributes={'percent-open': int(command.get('value'))})
-            self.setDriver('GV1', self.objVent.attributes['percent-open'])
+            self.setDriver('GV1', self.objVent.attributes['percent-open'], True)
+            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setOpen: %s', str(ex))
 
     def query(self):
         try:
             if  self.objVent.attributes['inactive'] is True:
-                self.setDriver('GV2', 1)
+                self.setDriver('GV2', 1, True)
             else:
-                self.setDriver('GV2', 0)
+                self.setDriver('GV2', 0, True)
 
-            self.setDriver('GV1', self.objVent.attributes['percent-open'])
+            self.setDriver('GV1', self.objVent.attributes['percent-open'], True)
             self.reportDrivers()
         
         except ApiError as ex:
@@ -268,8 +282,8 @@ class FlairPuck(polyinterface.Node):
             else:
                 self.setDriver('GV2', 0)
 
-            self.setDriver('CLITEMP', round(self.objPuck.attributes['current-temperature-c'],1))
-            self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'])
+            self.setDriver('CLITEMP', round(self.objPuck.attributes['current-temperature-c'],1), True)
+            self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'], True)
             self.reportDrivers()
             
         except ApiError as ex:
@@ -297,25 +311,27 @@ class FlairRoom(polyinterface.Node):
     def query(self):
         try:
             if  self.objRoom.attributes['active'] is True:
-                self.setDriver('GV2', 0)
+                self.setDriver('GV2', 0, True)
             else:
-                self.setDriver('GV2', 1)
+                self.setDriver('GV2', 1, True)
 
-            self.setDriver('CLITEMP', round(self.objRoom.attributes['current-temperature-c'],1))
+            self.setDriver('CLITEMP', round(self.objRoom.attributes['current-temperature-c'],1), True)
 
             if self.objRoom.attributes['current-humidity'] is None:
-                self.setDriver('CLIHUM',0)
+                self.setDriver('CLIHUM',0, True)
             else:
-                self.setDriver('CLIHUM', self.objRoom.attributes['current-humidity'])
+                self.setDriver('CLIHUM', self.objRoom.attributes['current-humidity'], True)
 
-            self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1))
+            self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1), True)
+            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))  
     
     def setTemp(self, command):
         try:
             self.objRoom.update(attributes={'set-point-c': command.get('value')})
-            self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1))
+            self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1), True)
+            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setTemp: %s', str(ex))
 
