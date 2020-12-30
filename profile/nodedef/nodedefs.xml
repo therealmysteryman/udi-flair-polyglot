@@ -5,7 +5,10 @@
             <st id="ST" editor="bool" />
         </sts>
         <cmds>
-            <sends />
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </sends>
             <accepts>
                 <cmd id="DISCOVERY" />
             </accepts>
@@ -22,7 +25,10 @@
             <st id="GV6" editor="ssetpm" />
         </sts>
         <cmds>
-            <sends />
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </sends>
             <accepts>
                 <cmd id="QUERY" />
                 <cmd id="SET_MODE">
@@ -44,7 +50,10 @@
             <st id="GV1" editor="vpercent" />
         </sts>
         <cmds>
-            <sends />
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </sends>
             <accepts>
                 <cmd id="QUERY" />
                 <cmd id="SET_OPEN">
@@ -61,7 +70,10 @@
             <st id="CLIHUM" editor="hum" />
         </sts>
         <cmds>
-            <sends />
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </sends>
             <accepts>
                 <cmd id="QUERY" />
             </accepts>
@@ -76,7 +88,10 @@
             <st id="CLISPC" editor="temp" />
         </sts>
         <cmds>
-            <sends />
+            <sends>
+                <cmd id="DON" />
+                <cmd id="DOF" />
+            </sends>
             <accepts>
                 <cmd id="QUERY" />
                 <cmd id="SET_TEMP">
