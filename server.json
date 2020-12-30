@@ -12,8 +12,8 @@
         {
             "title": "udi-flair-poly: A Polyglot v2 interface to Flair API",
             "author": "AutomationGeek",
-            "version": "2.0.4",
-            "date": "March 1, 2018",
+            "version": "2.0.5",
+            "date": "December 30, 2020",
             "source": "https://github.com/therealmysteryman/udi-flair-polyglot",
             "license": "https://github.com/therealmysteryman/udi-flair-polyglot/blob/master/LICENSE"
         },
