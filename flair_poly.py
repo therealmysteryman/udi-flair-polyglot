@@ -293,7 +293,7 @@ class FlairPuck(polyinterface.Node):
             
     drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
-                {'driver': 'CLIHUM', 'value': 0, 'uom': 22}]
+                {'driver': 'CLIHUM', 'value': 0, 'uom': 51}]
     
     id = 'FLAIR_PUCK'
     commands = {  'QUERY': query }
@@ -339,7 +339,7 @@ class FlairRoom(polyinterface.Node):
 
     drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
-                {'driver': 'CLIHUM', 'value': 0, 'uom': 22},
+                {'driver': 'CLIHUM', 'value': 0, 'uom': 51},
                 {'driver': 'CLISPC', 'value': 0, 'uom': 4}]
     
     id = 'FLAIR_ROOM'
