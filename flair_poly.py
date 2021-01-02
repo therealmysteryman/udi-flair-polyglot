@@ -150,6 +150,7 @@ class Controller(polyinterface.Controller):
 class FlairStructure(polyinterface.Node):
 
     SPM = ['Home Evenness Flair SetPoint','Home Evenness Follow Third Party','Home Evenness For Active Rooms Follow Third Party']
+    SPM_L = [item.lower() for item in SPM]
     HAM = ['Manual','Third Party Home Away','Flair Autohome Autoaway']
     MODE = ['manual','auto']
     
@@ -182,7 +183,7 @@ class FlairStructure(polyinterface.Node):
     def setEven(self, command):
         try:    
             self.objStructure.update(attributes={'set-point-mode': self.SPM[int(command.get('value'))]})
-            self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']), True)
+            self.setDriver('GV6', self.SPM_L.index(self.objStructure.attributes['set-point-mode'].lower()), True)
             self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setEven: %s', str(ex))
@@ -201,7 +202,7 @@ class FlairStructure(polyinterface.Node):
             else:
                 self.setDriver('GV3', 0, True)
 
-            self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']), True)
+            self.setDriver('GV6', self.SPM_L.index(self.objStructure.attributes['set-point-mode'].lower()), True)
             self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']), True)
             self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']), True)
             self.reportDrivers()
