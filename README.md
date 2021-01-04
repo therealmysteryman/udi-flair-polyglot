@@ -2,7 +2,7 @@
 
 ![Build Status](https://travis-ci.org/therealmysteryman/udi-flair-polyglot.svg?branch=master)
 
-This Poly provides an interface between Flair Vent and Polyglot v2 server. Has been tested with a Puck in Gateway mode and with Vent on a HVAC system. https://flair.co/
+This Poly provides an interface between Flair Vent and Polyglot v2 server. Has been tested on a HVAC system using a Puck in Gateway mode and a few vents throughout the house. https://flair.co/
 
 #### Installation
 
