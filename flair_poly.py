@@ -48,15 +48,17 @@ class Controller(polyinterface.Controller):
                 LOGGER.error('Flair requires \'client_id\' \'client_secret\' parameters to be specified in custom configuration.')
                 return False
             else:
-                self.poly.installprofile()
+                self.check_profile()
                 self.setDriver('ST', 1, True)
                 self.reportDrivers()
                 
                 # Connect to Flair API
                 self.discover()
+ 
                 
         except Exception as ex:
             LOGGER.error('Error starting Flair NodeServer: %s', str(ex))
+            
 
     def shortPoll(self):
         if self.discovery_thread is not None:
@@ -67,6 +69,7 @@ class Controller(polyinterface.Controller):
                 self.query()
 
     def longPoll(self):
+        self.heartbeat()
         if self.discovery_thread is not None:
             if self.discovery_thread.isAlive():
                 LOGGER.debug('Skipping longPoll() while discovery in progress...')
@@ -74,6 +77,38 @@ class Controller(polyinterface.Controller):
             else:
                 self.discovery_thread = None
                 self.discover()
+    
+    
+    def get_profile_info(logger):
+        pvf = 'profile/version.txt'
+        try:
+            with open(pvf) as f:
+                pv = f.read().replace('\n', '')
+        except Exception as err:
+            logger.error('get_profile_info: failed to read  file {0}: {1}'.format(pvf,err), exc_info=True)
+            pv = 0
+        f.close()
+        return { 'version': pv }
+
+    def check_profile(self):
+        self.profile_info = get_profile_info(LOGGER)
+        # Set Default profile version if not Found
+        cdata = deepcopy(self.polyConfig['customData'])
+        LOGGER.info('check_profile: profile_info={0} customData={1}'.format(self.profile_info,cdata))
+        if not 'profile_info' in cdata:
+            cdata['profile_info'] = { 'version': 0 }
+        if self.profile_info['version'] == cdata['profile_info']['version']:
+            self.update_profile = False
+        else:
+            self.update_profile = True
+            self.poly.installprofile()
+        LOGGER.info('check_profile: update_profile={}'.format(self.update_profile))
+        cdata['profile_info'] = self.profile_info
+        self.saveCustomData(cdata)
+
+    def install_profile(self,command):
+        LOGGER.info("install_profile:")
+        self.poly.installprofile()
     
     def heartbeat(self):
         self.l_info('heartbeat','hb={}'.format(self.hb))
@@ -149,8 +184,7 @@ class Controller(polyinterface.Controller):
     
 class FlairStructure(polyinterface.Node):
 
-    SPM = ['Home Evenness Flair SetPoint','Home Evenness Follow Third Party','Home Evenness For Active Rooms Follow Third Party']
-    SPM_L = [item.lower() for item in SPM]
+    SPM = ['Home Evenness For Active Rooms Flair Setpoint','Home Evenness For Active Rooms Follow Third Party']
     HAM = ['Manual','Third Party Home Away','Flair Autohome Autoaway']
     MODE = ['manual','auto']
     
@@ -171,6 +205,7 @@ class FlairStructure(polyinterface.Node):
             self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setMode: %s', str(ex))
+            pass
        
     def setAway(self, command):
         try:
@@ -179,14 +214,16 @@ class FlairStructure(polyinterface.Node):
             self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setAway: %s', str(ex))
+            pass
     
     def setEven(self, command):
         try:    
             self.objStructure.update(attributes={'set-point-mode': self.SPM[int(command.get('value'))]})
-            self.setDriver('GV6', self.SPM_L.index(self.objStructure.attributes['set-point-mode'].lower()), True)
+            self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']), True)
             self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setEven: %s', str(ex))
+            pass
             
     def query(self):
         try:
@@ -202,13 +239,14 @@ class FlairStructure(polyinterface.Node):
             else:
                 self.setDriver('GV3', 0, True)
 
-            self.setDriver('GV6', self.SPM_L.index(self.objStructure.attributes['set-point-mode'].lower()), True)
+            self.setDriver('GV6', self.SPM_L.index(self.objStructure.attributes['set-point-mode']), True)
             self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']), True)
             self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']), True)
             self.reportDrivers()
             
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))
+            pass
             
     drivers = [{'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
