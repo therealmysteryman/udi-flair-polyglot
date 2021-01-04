@@ -54,6 +54,7 @@ class Controller(polyinterface.Controller):
                 
                 # Connect to Flair API
                 self.discover()
+                self.heartbeat()
  
                 
         except Exception as ex:
