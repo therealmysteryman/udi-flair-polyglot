@@ -37,5 +37,4 @@ AWAYSEL-1 = Third Party
 AWAYSEL-2 = Flair
 
 SETPMSEL-0 = Flair SetPoint
-SETPMSEL-1 = Follow
-SETPMSEL-2 = Active Rooms
+SETPMSEL-1 = Third Party
