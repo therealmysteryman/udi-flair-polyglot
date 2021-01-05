@@ -38,7 +38,7 @@ class Controller(polyinterface.Controller):
         super(Controller, self).__init__(polyglot)
         self.name = 'Flair'
         self.initialized = False
-        self.queryON = False
+        self.queryON = True
         self.client_id = ""
         self.client_secret = ""
         self.api_client = None
@@ -112,7 +112,7 @@ class Controller(polyinterface.Controller):
         self.poly.installprofile()
     
     def heartbeat(self):
-        LOGGER.debug('heartbeat','hb={}'.format(self.hb))
+        LOGGER.debug('heartbeat hb={}'.format(str(self.hb)))
         if self.hb == 0:
             self.reportCmd("DON",2)
             self.hb = 1
