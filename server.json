@@ -4,15 +4,15 @@
     "type": "python3",
     "executable": "flair_poly.py",
     "install": "install.sh",
-    "shortPoll": "300",
-    "longPoll": "2700",
+    "shortPoll": "120",
+    "longPoll": "900",
     "description": "Flair system to the ISY994.",
     "notice": "https://github.com/therealmysteryman/udi-flair-polyglot/blob/master/LICENSE",
     "credits": [
         {
             "title": "udi-flair-poly: A Polyglot v2 interface to Flair API",
             "author": "AutomationGeek",
-            "version": "2.0.9",
+            "version": "2.0.10",
             "date": "January 5, 2021",
             "source": "https://github.com/therealmysteryman/udi-flair-polyglot",
             "license": "https://github.com/therealmysteryman/udi-flair-polyglot/blob/master/LICENSE"
