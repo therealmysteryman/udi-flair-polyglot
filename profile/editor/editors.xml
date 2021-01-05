@@ -21,6 +21,6 @@
 		<range uom="25" subset="0-2" nls="AWAYSEL" />
 	</editor>
         <editor id="ssetpm">
-                <range uom="25" subset="0-2" nls="SETPMSEL" />
+                <range uom="25" subset="0-1" nls="SETPMSEL" />
 	</editor>
 </editors>
