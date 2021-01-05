@@ -233,10 +233,7 @@ class FlairStructure(polyinterface.Node):
             else:
                 self.setDriver('GV2', 0, True)
             
-            if ( self.objStructure.attributes['set-point-temperature-c'] is not None ) :
-                self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1), True)
-            else : 
-                self.setDriver('CLITEMP', 0, True )
+            self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1), True)
 
             if  self.objStructure.attributes['home'] is True:
                 self.setDriver('GV3', 1, True)
@@ -355,19 +352,26 @@ class FlairRoom(polyinterface.Node):
             
     def query(self):
         try:
-            if  self.objRoom.attributes['active'] is True:
+            if self.objRoom.attributes['active'] is True:
                 self.setDriver('GV2', 0, True)
             else:
                 self.setDriver('GV2', 1, True)
 
-            self.setDriver('CLITEMP', round(self.objRoom.attributes['current-temperature-c'],1), True)
+            if self.objRoom.attributes['current-temperature-c'] is not None :
+                self.setDriver('CLITEMP', round(self.objRoom.attributes['current-temperature-c'],1), True)
+            else:
+                self.setDriver('CLITEMP',0, True)
 
             if self.objRoom.attributes['current-humidity'] is None:
                 self.setDriver('CLIHUM',0, True)
             else:
                 self.setDriver('CLIHUM', self.objRoom.attributes['current-humidity'], True)
 
-            self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1), True)
+            if self.objRoom.attributes['set-point-c'] is not None:
+                self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1), True)
+            else:
+                self.setDriver('CLISPC', 0, True)
+                
             self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))  
