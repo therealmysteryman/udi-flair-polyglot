@@ -232,8 +232,11 @@ class FlairStructure(polyinterface.Node):
                 self.setDriver('GV2', 1, True)
             else:
                 self.setDriver('GV2', 0, True)
-
-            self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1), True)
+            
+            if ( self.objStructure.attributes['set-point-temperature-c'] is not None ) :
+                self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1), True)
+            else : 
+                self.setDriver('CLITEMP', 0, True )
 
             if  self.objStructure.attributes['home'] is True:
                 self.setDriver('GV3', 1, True)
