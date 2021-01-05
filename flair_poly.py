@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-This is a NodeServer for Flair Vent System written by automationgeek (Jean-Francois Tremblay) 
+This is a NodeServer for Flair Vent Sys/tem written by automationgeek (Jean-Francois Tremblay) 
 based on the NodeServer template for Polyglot v2 written in Python2/3 by Einstein.42 (James Milne) milne.james@gmail.com
 Using the Flair API Client - https://github.com/flair-systems/flair-api-client-py
 """
@@ -19,6 +19,17 @@ from flair_api import EmptyBodyException
 LOGGER = polyinterface.LOGGER
 SERVERDATA = json.load(open('server.json'))
 VERSION = SERVERDATA['credits'][0]['version']
+
+def get_profile_info(logger):
+    pvf = 'profile/version.txt'
+    try:
+        with open(pvf) as f:
+            pv = f.read().replace('\n', '')
+    except Exception as err:
+        logger.error('get_profile_info: failed to read  file {0}: {1}'.format(pvf,err), exc_info=True)
+        pv = 0
+    f.close()
+    return { 'version': pv }
 
 class Controller(polyinterface.Controller):
 
@@ -79,18 +90,6 @@ class Controller(polyinterface.Controller):
                 self.discovery_thread = None
                 self.discover()
     
-    
-    def get_profile_info(logger):
-        pvf = 'profile/version.txt'
-        try:
-            with open(pvf) as f:
-                pv = f.read().replace('\n', '')
-        except Exception as err:
-            logger.error('get_profile_info: failed to read  file {0}: {1}'.format(pvf,err), exc_info=True)
-            pv = 0
-        f.close()
-        return { 'version': pv }
-
     def check_profile(self):
         self.profile_info = get_profile_info(LOGGER)
         # Set Default profile version if not Found
