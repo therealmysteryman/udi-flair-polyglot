@@ -11,6 +11,7 @@ import hashlib
 import time
 import json
 import sys
+from copy import deepcopy
 from threading import Thread
 from flair_api import make_client
 from flair_api import ApiError
