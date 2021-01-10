@@ -124,14 +124,13 @@ class Controller(polyinterface.Controller):
         for node in self.nodes:
             if self.nodes[node].queryON == True :
                 self.nodes[node].query()
-        self.reportDrivers()
     
     def runDiscover(self,command):
         self.discover()
     
     def discover(self, *args, **kwargs):  
         if self.discovery_thread is not None:
-            if self.discovery_thread.isAlive():
+            if self.discovery_thread.is_alive():
                 LOGGER.info('Discovery is still in progress')
                 return
         self.discovery_thread = Thread(target=self._discovery_process)
