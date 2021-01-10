@@ -79,6 +79,7 @@ class Controller(polyinterface.Controller):
                 LOGGER.debug('Skipping shortPoll() while discovery in progress...')
                 return
             else:
+                self.discovery_thread = None
                 self.query()
 
     def longPoll(self):
@@ -124,6 +125,7 @@ class Controller(polyinterface.Controller):
         for node in self.nodes:
             if self.nodes[node].queryON == True :
                 self.nodes[node].query()
+        self.reportDrivers()
     
     def runDiscover(self,command):
         self.discover()
@@ -202,28 +204,22 @@ class FlairStructure(polyinterface.Node):
         try :
             self.objStructure.update(attributes={'mode': self.MODE[int(command.get('value'))]})  
             self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']), True)
-            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setMode: %s', str(ex))
-            pass
        
     def setAway(self, command):
         try:
             self.objStructure.update(attributes={'home-away-mode': self.HAM[int(command.get('value'))]})
             self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']), True)
-            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setAway: %s', str(ex))
-            pass
     
     def setEven(self, command):
         try:    
             self.objStructure.update(attributes={'set-point-mode': self.SPM[int(command.get('value'))]})
             self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']), True)
-            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setEven: %s', str(ex))
-            pass
             
     def query(self):
         try:
@@ -242,11 +238,9 @@ class FlairStructure(polyinterface.Node):
             self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']), True)
             self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']), True)
             self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']), True)
-            self.reportDrivers()
             
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))
-            pass
             
     drivers = [{'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
@@ -279,7 +273,6 @@ class FlairVent(polyinterface.Node):
         try:
             self.objVent.update(attributes={'percent-open': int(command.get('value'))})
             self.setDriver('GV1', self.objVent.attributes['percent-open'], True)
-            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error setOpen: %s', str(ex))
 
@@ -291,7 +284,6 @@ class FlairVent(polyinterface.Node):
                 self.setDriver('GV2', 0, True)
 
             self.setDriver('GV1', self.objVent.attributes['percent-open'], True)
-            self.reportDrivers()
         
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))
@@ -325,7 +317,6 @@ class FlairPuck(polyinterface.Node):
 
             self.setDriver('CLITEMP', round(self.objPuck.attributes['current-temperature-c'],1), True)
             self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'], True)
-            self.reportDrivers()
             
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))  
@@ -371,7 +362,6 @@ class FlairRoom(polyinterface.Node):
             else:
                 self.setDriver('CLISPC', 0, True)
                 
-            self.reportDrivers()
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))  
     
@@ -379,7 +369,7 @@ class FlairRoom(polyinterface.Node):
         try:
             self.objRoom.update(attributes={'set-point-c': command.get('value')})
             self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1), True)
-            self.reportDrivers()
+
         except ApiError as ex:
             LOGGER.error('Error setTemp: %s', str(ex))
 
