@@ -77,20 +77,13 @@ class Controller(polyinterface.Controller):
         if self.discovery_thread is not None:
             if self.discovery_thread.is_alive():
                 LOGGER.debug('Skipping shortPoll() while discovery in progress...')
-                return
             else:
                 self.discovery_thread = None
-                self.query()
+         else :
+            self.query()
 
     def longPoll(self):
         self.heartbeat()
-        if self.discovery_thread is not None:
-            if self.discovery_thread.is_alive():
-                LOGGER.debug('Skipping longPoll() while discovery in progress...')
-                return
-            else:
-                self.discovery_thread = None
-                self.discover()
     
     def check_profile(self):
         self.profile_info = get_profile_info(LOGGER)
@@ -123,7 +116,7 @@ class Controller(polyinterface.Controller):
     
     def query(self):
         for node in self.nodes:
-            if self.nodes[node].queryON == True :
+            if self.nodes[node].address != self.address and self.nodes[node].queryON == True :
                 self.nodes[node].query()
         self.reportDrivers()
     
@@ -139,7 +132,6 @@ class Controller(polyinterface.Controller):
         self.discovery_thread.start()
 
     def _discovery_process(self):
-        time.sleep(1)
         
         try:
             self.api_client = make_client(self.client_id,self.client_secret,'https://api.flair.co/')
@@ -150,7 +142,7 @@ class Controller(polyinterface.Controller):
         for structure in structures:
             strHash = str(int(hashlib.md5(structure.attributes['name'].encode('utf8')).hexdigest(), 16) % (10 ** 8))
             self.addNode(FlairStructure(self, strHash, strHash,structure.attributes['name'],structure))
-            time.sleep(5)
+            #time.sleep(5)
             rooms = structure.get_rel('rooms')
             roomNumber = 1
             for room in rooms:
@@ -198,7 +190,8 @@ class FlairStructure(polyinterface.Node):
         self.objStructure = struct
    
     def start(self):
-        self.query()
+        #self.query()
+        pass
    
     def setMode(self, command):
         try :
@@ -266,7 +259,8 @@ class FlairVent(polyinterface.Node):
         self.objRoom = room
         
     def start(self):
-        self.query()
+        #self.query()
+        pass
         
     def setOpen(self, command):
         
@@ -306,7 +300,8 @@ class FlairPuck(polyinterface.Node):
         self.objRoom = room
         
     def start(self):
-        self.query()
+        #self.query()
+        pass
             
     def query(self):
         try:
@@ -338,7 +333,8 @@ class FlairRoom(polyinterface.Node):
         self.objRoom = room
         
     def start(self):
-        self.query()
+        #self.query()
+        pass
             
     def query(self):
         try:
