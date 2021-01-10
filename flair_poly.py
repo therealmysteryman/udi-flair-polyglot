@@ -79,9 +79,9 @@ class Controller(polyinterface.Controller):
                 LOGGER.debug('Skipping shortPoll() while discovery in progress...')
             else:
                 self.discovery_thread = None
-         else :
+        else :
             self.query()
-
+            
     def longPoll(self):
         self.heartbeat()
     
