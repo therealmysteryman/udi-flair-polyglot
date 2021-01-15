@@ -122,7 +122,7 @@ class Controller(polyinterface.Controller):
         self.setDriver('ST', 1)
         self.reportDrivers()
         for node in self.nodes:
-            if self.nodes[node].address != self.address and self.nodes[node].queryON == True :
+            if self.nodes[node].queryON == True :
                 self.nodes[node].query()
     
     def runDiscover(self,command):
