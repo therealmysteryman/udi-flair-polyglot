@@ -176,7 +176,7 @@ class Controller(polyinterface.Controller):
         LOGGER.info('Deleting Flair')
         
     id = 'controller'
-    commands = {    'QUERY': query,        
+    commands = {    'QUERY': shortPoll,        
                     'DISCOVERY' : runDiscover
                }
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
