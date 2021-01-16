@@ -9,7 +9,10 @@
                 <range uom="51" subset="0,100" />
         </editor> 
         <editor id="temp">
-                <range uom="4" min="0" max="32" step="0.5" prec="1" />
+                <range uom="4" min="-40" max="50" step="0.5" prec="1" />
+        </editor>   
+	<editor id="tempf">
+                <range uom="17" min="-40" max="120" step="0.5" prec="1" />
         </editor>   
         <editor id="hum">
                 <range uom="51" subset="0-100" />
