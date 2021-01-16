@@ -225,8 +225,11 @@ class FlairStructure(polyinterface.Node):
             else:
                 self.setDriver('GV2', 0, True)
             
-            self.setDriver('CLITEMP', round(self.objStructure.attributes['set-point-temperature-c'],1), True)
-            self.setDriver('GV7', round(self.objStructure.attributes['set-point-temperature-f'],1), True)
+            tempC = int(self.objStructure.attributes['set-point-temperature-c'])
+            tempF = (tempC * 9/5) + 32
+            
+            self.setDriver('CLITEMP', round(tempC,1) , True)
+            self.setDriver('GV7', round(tempF,1), True)
 
             if  self.objStructure.attributes['home'] is True:
                 self.setDriver('GV3', 1, True)
@@ -248,7 +251,7 @@ class FlairStructure(polyinterface.Node):
                 {'driver': 'GV4', 'value': 0, 'uom': 25},
                 {'driver': 'GV5', 'value': 0, 'uom': 25},
                 {'driver': 'GV6', 'value': 0, 'uom': 25},
-                {'driver': 'GV6', 'value': 0, 'uom': 17} ]
+                {'driver': 'GV7', 'value': 0, 'uom': 17} ]
     
     id = 'FLAIR_STRUCT'
     commands = {'SET_MODE' : setMode, 
@@ -320,8 +323,11 @@ class FlairPuck(polyinterface.Node):
             else:
                 self.setDriver('GV2', 0)
 
-            self.setDriver('CLITEMP', round(self.objPuck.attributes['current-temperature-c'],1), True)
-            self.setDriver('GV7', round(self.objPuck.attributes['current-temperature-f'],1), True)
+            tempC = int(self.objPuck.attributes['current-temperature-c'])
+            tempF = (tempC * 9/5) + 32
+                
+            self.setDriver('CLITEMP', round(tempC,1), True)
+            self.setDriver('GV7', round(tempF,1), True)
             self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'], True)
             
             self.reportDrivers()
@@ -357,15 +363,16 @@ class FlairRoom(polyinterface.Node):
                 self.setDriver('GV2', 1, True)
 
             if self.objRoom.attributes['current-temperature-c'] is not None :
-                self.setDriver('CLITEMP', round(self.objRoom.attributes['current-temperature-c'],1), True)
+                
+                tempC = int(self.objRoom.attributes['current-temperature-c'])
+                tempF = (tempC * 9/5) + 32
+                
+                self.setDriver('CLITEMP', round(tempC,1), True)
+                self.setDriver('GV7',round(tempF,1), True)
             else:
                 self.setDriver('CLITEMP',0, True)
-                
-            if self.objRoom.attributes['current-temperature-f'] is not None :
-                self.setDriver('GV7', round(self.objRoom.attributes['current-temperature-f'],1), True)
-            else:
                 self.setDriver('GV7',0, True)
-
+                
             if self.objRoom.attributes['current-humidity'] is None:
                 self.setDriver('CLIHUM',0, True)
             else:
@@ -392,7 +399,7 @@ class FlairRoom(polyinterface.Node):
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
                 {'driver': 'CLIHUM', 'value': 0, 'uom': 51},
                 {'driver': 'CLISPC', 'value': 0, 'uom': 4},
-                {'driver': 'GV7', 'value': 0, 'uom': 4}]
+                {'driver': 'GV7', 'value': 0, 'uom': 17}]
     
     id = 'FLAIR_ROOM'
     commands = { 'QUERY': query, 
