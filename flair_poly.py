@@ -38,7 +38,7 @@ class Controller(polyinterface.Controller):
         super(Controller, self).__init__(polyglot)
         self.name = 'Flair'
         self.initialized = False
-        self.queryON = True
+        self.queryON = False
         self.client_id = ""
         self.client_secret = ""
         self.api_client = None
