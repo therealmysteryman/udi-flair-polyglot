@@ -23,6 +23,7 @@
             <st id="GV4" editor="smode" />
             <st id="GV5" editor="saway" />
             <st id="GV6" editor="ssetpm" />
+            <st id="GV7" editor="tempf" />
         </sts>
         <cmds>
             <sends>
@@ -67,6 +68,7 @@
         <sts>
             <st id="GV2" editor="bool" />
             <st id="CLITEMP" editor="temp" />
+            <st id="GV7" editor="tempf" />
             <st id="CLIHUM" editor="hum" />
         </sts>
         <cmds>
@@ -84,6 +86,7 @@
         <sts>
             <st id="GV2" editor="bool" />
             <st id="CLITEMP" editor="temp" />
+            <st id="GV7" editor="tempf" />
             <st id="CLIHUM" editor="hum" />
             <st id="CLISPC" editor="temp" />
         </sts>
