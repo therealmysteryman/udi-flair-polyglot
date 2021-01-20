@@ -289,6 +289,7 @@ class FlairVent(polyinterface.Node):
                 self.setDriver('GV2', 0, True)
 
             self.setDriver('GV1', self.objVent.attributes['percent-open'], True)
+            self.setDriver('GV8', self.objVent.attributes['voltage'], True)
             
             self.reportDrivers()
         
@@ -296,7 +297,8 @@ class FlairVent(polyinterface.Node):
             LOGGER.error('Error query: %s', str(ex))
              
     drivers = [{'driver': 'GV2', 'value': 0, 'uom': 2},
-              {'driver': 'GV1', 'value': 0, 'uom': 51}]
+              {'driver': 'GV1', 'value': 0, 'uom': 51},
+              {'driver': 'GV8', 'value': 0, 'uom': 72}]
     
     id = 'FLAIR_VENT'
     commands = { 'SET_OPEN' : setOpen,
