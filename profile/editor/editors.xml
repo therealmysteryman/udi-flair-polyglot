@@ -26,4 +26,7 @@
         <editor id="ssetpm">
                 <range uom="25" subset="0-1" nls="SETPMSEL" />
 	</editor>
+	<editor id="volt">
+                <range uom="72" subset="0-5" prec="2" />
+	</editor>
 </editors>
