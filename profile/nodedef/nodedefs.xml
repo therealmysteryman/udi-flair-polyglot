@@ -49,6 +49,7 @@
         <sts>
             <st id="GV2" editor="bool" />
             <st id="GV1" editor="vpercent" />
+            <st id="GV8" editor="volt" />
         </sts>
         <cmds>
             <sends>
