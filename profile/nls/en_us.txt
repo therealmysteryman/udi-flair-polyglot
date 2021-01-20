@@ -17,6 +17,7 @@ ST-GV4-NAME = Mode
 ST-GV5-NAME = Home Away Mode
 ST-GV6-NAME = Home Evennesss
 ST-GV7-NAME = Current Temperature F
+ST-GV8-NAME = Voltage
 
 ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
