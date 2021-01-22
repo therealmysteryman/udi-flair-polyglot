@@ -18,6 +18,10 @@ ST-GV5-NAME = Home Away Mode
 ST-GV6-NAME = Home Evennesss
 ST-GV7-NAME = Current Temperature F
 ST-GV8-NAME = Voltage
+ST-GV9-NAME = Duct Pressure
+ST-GV10-NAME = Duct Temperature 
+ST-GV11-NAME = Duct Temperature F
+ST-GV12-NAME = Rssi
 
 ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
