@@ -75,6 +75,8 @@
             <st id="CLITEMP" editor="temp" />
             <st id="GV7" editor="tempf" />
             <st id="CLIHUM" editor="hum" />
+            <st id="GV8" editor="volt" />
+            <st id="GV12" editor="rssi" />
         </sts>
         <cmds>
             <sends>
