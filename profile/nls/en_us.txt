@@ -22,7 +22,6 @@ ST-GV9-NAME = Duct Pressure
 ST-GV10-NAME = Duct Temperature 
 ST-GV11-NAME = Duct Temperature F
 ST-GV12-NAME = Rssi
-ST-GV13-NAME = Puck Voltage
 
 ST-CLITEMP-NAME = Current Temperature
 ST-CLIHUM-NAME = Current Humidity
