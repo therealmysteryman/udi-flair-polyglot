@@ -284,13 +284,24 @@ class FlairVent(polyinterface.Node):
     def query(self):
         try:
             if  self.objVent.attributes['inactive'] is True:
-                self.setDriver('GV2', 1, True)
+                self.setDriver('GV2', 1)
             else:
-                self.setDriver('GV2', 0, True)
+                self.setDriver('GV2', 0)
 
-            self.setDriver('GV1', self.objVent.attributes['percent-open'], True)
-            self.setDriver('GV8', self.objVent.attributes['voltage'], True)
+            self.setDriver('GV1', self.objVent.attributes['percent-open'])
+            self.setDriver('GV8', self.objVent.attributes['voltage'])
             
+            # Get current-reading
+            creading = self.objVent.get_rel('current-reading')
+            self.setDriver('GV9', creading.attributes['duct-pressure'])
+            
+            tempC = int(creading.attributes['duct-temperature-c'])
+            tempF = (tempC * 9/5) + 32
+            
+            self.setDriver('GV10', tempC)
+            self.setDriver('GV11', tempF)
+            self.setDriver('GV12', creading.attributes['rssi'])
+
             self.reportDrivers()
         
         except ApiError as ex:
@@ -298,7 +309,11 @@ class FlairVent(polyinterface.Node):
              
     drivers = [{'driver': 'GV2', 'value': 0, 'uom': 2},
               {'driver': 'GV1', 'value': 0, 'uom': 51},
-              {'driver': 'GV8', 'value': 0, 'uom': 72}]
+              {'driver': 'GV8', 'value': 0, 'uom': 72},
+              {'driver': 'GV9', 'value': 0, 'uom': 31},
+              {'driver': 'GV10', 'value': 0, 'uom': 4},
+              {'driver': 'GV11', 'value': 0, 'uom': 17},
+              {'driver': 'GV12', 'value': 0, 'uom': 56}]
     
     id = 'FLAIR_VENT'
     commands = { 'SET_OPEN' : setOpen,
