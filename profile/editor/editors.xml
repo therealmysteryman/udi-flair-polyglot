@@ -29,4 +29,10 @@
 	<editor id="volt">
                 <range uom="72" subset="0-6" prec="2" />
 	</editor>
+	<editor id="pressure">
+                <range uom="31" subset="0-1000" prec="2" />
+	</editor>
+		<editor id="rssi">
+                <range uom="56" subset="-100-0" prec="1" />
+	</editor>
 </editors>
