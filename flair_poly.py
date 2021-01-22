@@ -343,9 +343,14 @@ class FlairPuck(polyinterface.Node):
             tempC = int(self.objPuck.attributes['current-temperature-c'])
             tempF = (tempC * 9/5) + 32
                 
-            self.setDriver('CLITEMP', round(tempC,1), True)
-            self.setDriver('GV7', round(tempF,1), True)
-            self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'], True)
+            self.setDriver('CLITEMP', round(tempC,1))
+            self.setDriver('GV7', round(tempF,1))
+            self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'])
+            
+            # Get current-reading
+            creading = self.objPuck.get_rel('current-reading')
+            self.setDriver('GV12', creading.attributes['rssi'])
+            self.setDriver('GV8', creading.attributes['system-voltage'])
             
             self.reportDrivers()
             
@@ -355,7 +360,9 @@ class FlairPuck(polyinterface.Node):
     drivers = [ {'driver': 'GV2', 'value': 0, 'uom': 2},
                 {'driver': 'CLITEMP', 'value': 0, 'uom': 4},
                 {'driver': 'CLIHUM', 'value': 0, 'uom': 51},
-                {'driver': 'GV7', 'value': 0, 'uom': 17}]
+                {'driver': 'GV7', 'value': 0, 'uom': 17},
+                {'driver': 'GV8', 'value': 0, 'uom': 72},
+                {'driver': 'GV12', 'value': 0, 'uom': 56}]
     
     id = 'FLAIR_PUCK'
     commands = {  'QUERY': query }
