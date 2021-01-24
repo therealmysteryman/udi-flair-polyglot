@@ -4,8 +4,8 @@
     "type": "python3",
     "executable": "flair_poly.py",
     "install": "install.sh",
-    "shortPoll": "120",
-    "longPoll": "1800",
+    "shortPoll": "90",
+    "longPoll": "600",
     "description": "Flair system to the ISY994.",
     "notice": "https://github.com/therealmysteryman/udi-flair-polyglot/blob/master/LICENSE",
     "credits": [
