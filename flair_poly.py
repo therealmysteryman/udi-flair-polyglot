@@ -42,7 +42,6 @@ class Controller(polyinterface.Controller):
         self.client_id = ""
         self.client_secret = ""
         self.api_client = None
-        self.tries = 0
         self.discovery_thread = None
         self.hb = 0
 
@@ -68,26 +67,33 @@ class Controller(polyinterface.Controller):
             LOGGER.error('Error starting Flair NodeServer: %s', str(ex))
             
     def shortPoll(self):
-        if self.discovery_thread is not None:
-            if self.discovery_thread.is_alive():
-                LOGGER.debug('Skipping shortPoll() while discovery in progress...')
-                return
-            else:
-                self.discovery_thread = None
-        self.query()
+        try:
+            if self.discovery_thread is not None:
+                if self.discovery_thread.is_alive():
+                    LOGGER.debug('Skipping shortPoll() while discovery in progress...')
+                    return
+                else:
+                    self.discovery_thread = None
+            self.query()
+        except Exception as ex:
+            LOGGER.error('Error shortPoll: %s', str(ex))
             
     def longPoll(self):
-        self.heartbeat()
-        if self.discovery_thread is not None:
-            if self.discovery_thread.is_alive():
-                LOGGER.debug('Skipping longPoll() while discovery in progress...')
-                return	
-            else: 
-                self.discovery_thread = None	
-        
-        # Renew Token
-        self.api_client.oauth_token()
-        self.api_client.api_root_response()
+        try :
+            self.heartbeat()
+            self.reportDrivers()
+            if self.discovery_thread is not None:
+                if self.discovery_thread.is_alive():
+                    LOGGER.debug('Skipping longPoll() while discovery in progress...')
+                    return	
+                else: 
+                    self.discovery_thread = None	
+                    
+            # Renew Token
+            self.api_client.oauth_token()
+            self.api_client.api_root_response()
+        except Exception as ex:
+            LOGGER.error('Error longPoll: %s', str(ex))
     
     def check_profile(self):
         self.profile_info = get_profile_info(LOGGER)
@@ -120,7 +126,6 @@ class Controller(polyinterface.Controller):
     
     def query(self):
         self.setDriver('ST', 1)
-        self.reportDrivers()
         for node in self.nodes:
             if self.nodes[node].queryON == True :
                 self.nodes[node].query()
@@ -240,8 +245,6 @@ class FlairStructure(polyinterface.Node):
             self.setDriver('GV5', self.HAM.index(self.objStructure.attributes['home-away-mode']), True)
             self.setDriver('GV4', self.MODE.index(self.objStructure.attributes['mode']), True)
             
-            self.reportDrivers()
-            
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))
             
@@ -270,7 +273,6 @@ class FlairVent(polyinterface.Node):
         self.objRoom = room
         
     def start(self):
-        #self.query()
         pass
         
     def setOpen(self, command):
@@ -301,8 +303,6 @@ class FlairVent(polyinterface.Node):
             self.setDriver('GV10', tempC)
             self.setDriver('GV11', tempF)
             self.setDriver('GV12', creading.attributes['rssi'])
-
-            self.reportDrivers()
         
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))
@@ -330,7 +330,6 @@ class FlairPuck(polyinterface.Node):
         self.objRoom = room
         
     def start(self):
-        #self.query()
         pass
             
     def query(self):
@@ -351,9 +350,7 @@ class FlairPuck(polyinterface.Node):
             creading = self.objPuck.get_rel('current-reading')
             self.setDriver('GV12', creading.attributes['rssi'])
             self.setDriver('GV8', creading.attributes['system-voltage'])
-            
-            self.reportDrivers()
-            
+               
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))  
             
@@ -406,8 +403,7 @@ class FlairRoom(polyinterface.Node):
                 self.setDriver('CLISPC', round(self.objRoom.attributes['set-point-c'],1), True)
             else:
                 self.setDriver('CLISPC', 0, True)
-           
-            self.reportDrivers()
+         
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))  
     
