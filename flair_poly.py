@@ -73,7 +73,7 @@ class Controller(polyinterface.Controller):
                     return
                 else:
                     self.discovery_thread = None
-            self.query()
+            self.update()
         except Exception as ex:
             LOGGER.error('Error shortPoll: %s', str(ex))
             
@@ -121,12 +121,16 @@ class Controller(polyinterface.Controller):
         else:
             self.reportCmd("DOF",2)
             self.hb = 0
-    
+            
     def query(self):
+        for node in self.nodes:
+            self.nodes[node].reportDrivers()
+            
+    def update(self):
         self.setDriver('ST', 1)
         for node in self.nodes:
             if self.nodes[node].queryON == True :
-                self.nodes[node].query()
+                self.nodes[node].update()
     
     def runDiscover(self,command):
         self.discover()
@@ -179,7 +183,7 @@ class Controller(polyinterface.Controller):
         LOGGER.info('Deleting Flair')
         
     id = 'controller'
-    commands = {    'QUERY': shortPoll,        
+    commands = {    'QUERY': query,        
                     'DISCOVERY' : runDiscover
                }
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
@@ -220,8 +224,11 @@ class FlairStructure(polyinterface.Node):
             self.setDriver('GV6', self.SPM.index(self.objStructure.attributes['set-point-mode']))
         except ApiError as ex:
             LOGGER.error('Error setEven: %s', str(ex))
-            
+    
     def query(self):
+        self.reportDrivers()
+        
+    def update(self):
         try:
             if  self.objStructure.attributes['is-active'] is True:
                 self.setDriver('GV2', 1)
@@ -282,6 +289,9 @@ class FlairVent(polyinterface.Node):
             LOGGER.error('Error setOpen: %s', str(ex))
 
     def query(self):
+        self.reportDrivers()           
+            
+    def update(self):
         try:
             if  self.objVent.attributes['inactive'] is True:
                 self.setDriver('GV2', 1)
@@ -329,8 +339,11 @@ class FlairPuck(polyinterface.Node):
         
     def start(self):
         pass
-            
+    
     def query(self):
+        self.reportDrivers()
+    
+    def update(self):
         try:
             if  self.objPuck.attributes['inactive'] is True:
                 self.setDriver('GV2', 1)
@@ -373,8 +386,11 @@ class FlairRoom(polyinterface.Node):
         
     def start(self):
         pass
-            
+    
     def query(self):
+        self.reportDrivers()
+    
+    def update(self):
         try:
             if self.objRoom.attributes['active'] is True:
                 self.setDriver('GV2', 0)
