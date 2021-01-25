@@ -127,10 +127,13 @@ class Controller(polyinterface.Controller):
             self.nodes[node].reportDrivers()
             
     def update(self):
-        self.setDriver('ST', 1)
-        for node in self.nodes:
-            if self.nodes[node].queryON == True :
-                self.nodes[node].update()
+        try :
+            self.setDriver('ST', 1)
+            for node in self.nodes:
+                if self.nodes[node].queryON == True :
+                    self.nodes[node].update()
+        except Exception as ex:
+            LOGGER.error('Error update: %s', str(ex))
     
     def runDiscover(self,command):
         self.discover()
