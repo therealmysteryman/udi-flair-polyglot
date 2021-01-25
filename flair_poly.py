@@ -356,8 +356,8 @@ class FlairPuck(polyinterface.Node):
             #tempC = int(self.objPuck.attributes['current-temperature-c'])
             #tempF = (tempC * 9/5) + 32
                 
-            self.setDriver('CLITEMP', round(tempC,1))
-            self.setDriver('GV7', round(tempF,1))
+            #self.setDriver('CLITEMP', round(tempC,1))
+            #self.setDriver('GV7', round(tempF,1))
             self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'])
             
             # Get current-reading
