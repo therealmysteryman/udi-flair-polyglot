@@ -353,17 +353,17 @@ class FlairPuck(polyinterface.Node):
             else:
                 self.setDriver('GV2', 0)
 
-            tempC = int(self.objPuck.attributes['current-temperature-c'])
-            tempF = (tempC * 9/5) + 32
+            #tempC = int(self.objPuck.attributes['current-temperature-c'])
+            #tempF = (tempC * 9/5) + 32
                 
             self.setDriver('CLITEMP', round(tempC,1))
             self.setDriver('GV7', round(tempF,1))
             self.setDriver('CLIHUM', self.objPuck.attributes['current-humidity'])
             
             # Get current-reading
-            creading = self.objPuck.get_rel('current-reading')
-            self.setDriver('GV12', creading.attributes['rssi'])
-            self.setDriver('GV8', creading.attributes['system-voltage'])
+            #creading = self.objPuck.get_rel('current-reading')
+            #self.setDriver('GV12', creading.attributes['rssi'])
+            #self.setDriver('GV8', creading.attributes['system-voltage'])
                
         except ApiError as ex:
             LOGGER.error('Error query: %s', str(ex))  
